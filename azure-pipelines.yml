@@ -33,5 +33,3 @@ steps:
     Parameters: '-r "Release 2" -y "2.2.3"'
     AgentLoc: 'PrivateAgent'
     SABPath: 'C:\Program Files (x86)\InstallShield\2020'
-
-
