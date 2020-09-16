@@ -31,3 +31,9 @@ steps:
     Parameters: '-r "Release 2" -y "2.2.3"'
     AgentLoc: 'PrivateAgent'
     SABPath: 'C:\Program Files (x86)\InstallShield\2020'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)/My Project Name-1/Product Configuration 1/Release 1/DiskImages/DISK1'
+    artifact: 'Result'
+    publishLocation: 'pipeline'
