@@ -1,0 +1,17 @@
+
+#include "..\extra_scripts\TestLibFunction.h"
+#include "ifx.h"
+
+function TestLibFunction(svStr)
+begin
+
+	MessageBox(svStr,0);
+	
+end;
+
+function TestLibFunction2()
+begin
+
+	SprintfBox(0,"OS Version","The version of the OS that this setup is runnning on is %d.%d",SYSINFO.nWinMajor,SYSINFO.nWinMinor);
+	
+end;

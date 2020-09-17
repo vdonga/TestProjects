@@ -1,0 +1,211 @@
+<job id="BMSI_CA_PureX64AMD64Sup_BVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs"/>
+<script language="VBScript">
+
+On Error Resume Next
+
+'**** TEST CASE DESCRIPTION ****
+'The main objective of this testcase is to verify erros and warnings during build time..
+'..when Template Summary is set to AMD64 and Platform Validation is set to Strict
+
+
+'**** OBJECT CREATION ****
+Set WShell = CreateObject("WScript.Shell")
+Set FSO = CreateObject("Scripting.FileSystemObject")
+
+
+'**** VARIABLE DECLARATION ****
+strProjectName = "BMSI_CA_PureX64AMD64Sup_BVT" 
+ProjectFolder = GetProjectFolder()
+strResultOutput = ProjectFolder + "TestResult.txt"
+
+ProjectPath = ProjectFolder + strProjectName + ".ism"
+strVbsFilePath = ProjectFolder + "TestData\SetPlatformValidation.vbs"
+
+strWarning1 = "ISDEV : warning -7326: Including 32-bit PE file " + ProjectFolder + "TestData\com 64bit\TestActiveX32.ocx in a strict 64-bit package"
+strWarning2 = "ISDEV : warning -7326: Including 32-bit PE file " + ProjectFolder + "TestData\com 64bit\TestAtlExe32.exe in a strict 64-bit package"
+strWarning3 = "ISDEV : warning -7326: Including 32-bit PE file " + ProjectFolder + "TestData\MsiDLL2.dll in a strict 64-bit package"
+strWarning4 = "ISDEV : warning -7326: Including 32-bit PE file " + ProjectFolder + "TestData\NOTEPAD.EXE in a strict 64-bit package"
+strWarning5 = "ISDEV : warning -7327: Including 64-bit PE file " + ProjectFolder + "TestData\com 64bit\TestActiveX64.ocx in a strict 32-bit package"
+strWarning6 = "ISDEV : warning -7327: Including 64-bit PE file " + ProjectFolder + "TestData\com 64bit\TestAtlExe64.exe in a strict 32-bit package"
+strWarning7 = "ISDEV : warning -7327: Including 64-bit PE file " + ProjectFolder + "TestData\MyMfcDll.dll in a strict 32-bit package"
+
+strError1 = "ISDEV : error -7319: 32-bit EXE Custom Action EXEInstallWithProduct must not be included in a strict 64-bit package"
+strError2 = "ISDEV : error -5008: Intel64, AMD64 or Arm64 must be specified in the template of the Summary Stream"
+strError3 = "ISDEV : error -7320: 64-bit MSI DLL Custom Action MSIStoredinBinary must not be included in a strict 32-bit package"
+
+
+BuildLog86loose = ProjectFolder + "AMD86_loose.log"
+Buildlog86strict = ProjectFolder + "AMD86_strict.log"
+Buildlog64loose = ProjectFolder + "AMD64_loose.log"
+Buildlog64strict = ProjectFolder + "AMD64_strict.log"
+
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput,True
+End If
+
+'Setting Automation Layer Support
+RetVal = AutomationLayerSupport(ProjectPath, strVbsFilePath)
+ValidateOutput "Step 1", "Apply " + strVbsFilePath + " on " + ProjectPath, RetVal, 0
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+RetVal = BuildProjectwithOptions(ProjectPath, BuildLog86loose, " -a AMD86_loose")
+ValidateOutput "Step 2", "Build AMD86_loose release", RetVal, 0
+
+
+'**** BUILD VALIDATION ****
+RetVal = SearchBuildOutput(BuildLog86loose, strError2)
+ValidateOutput "Step 3", "Verify that " + ProjectFolder + "AMD86_loose.log contains string " + strError2, RetVal, 0
+
+RetVal = SearchBuildOutput(BuildLog86loose, strWarning1)
+ValidateOutput "Step 4", "Verify that " + ProjectFolder + "AMD86_loose.log doesn't contains string " + strWarning1, RetVal, -1
+
+RetVal = SearchBuildOutput(BuildLog86loose, strWarning2)
+ValidateOutput "Step 5", "Verify that " + ProjectFolder + "AMD86_loose.log doesn't contains string " + strWarning2, RetVal, -1
+
+RetVal = SearchBuildOutput(BuildLog86loose, strWarning3)
+ValidateOutput "Step 6", "Verify that " + ProjectFolder + "AMD86_loose.log doesn't contains string " + strWarning3, RetVal, -1
+
+RetVal = SearchBuildOutput(BuildLog86loose, strWarning4)
+ValidateOutput "Step 7", "Verify that " + ProjectFolder + "AMD86_loose.log doesn't contains string " + strWarning4, RetVal, -1
+
+RetVal = SearchBuildOutput(BuildLog86loose, strWarning5)
+ValidateOutput "Step 8", "Verify that " + ProjectFolder + "AMD86_loose.log doesn't contains string " + strWarning5, RetVal, -1
+
+RetVal = SearchBuildOutput(BuildLog86loose, strWarning6)
+ValidateOutput "Step 9", "Verify that " + ProjectFolder + "AMD86_loose.log doesn't contains string " + strWarning6, RetVal, -1
+
+RetVal = SearchBuildOutput(BuildLog86loose, strWarning7)
+ValidateOutput "Step 10", "Verify that " + ProjectFolder + "AMD86_loose.log doesn't contains string " + strWarning7, RetVal, -1
+
+RetVal = SearchBuildOutput(BuildLog86loose, strError1)
+ValidateOutput "Step 11", "Verify that " + ProjectFolder + "AMD86_loose.log doesn't contains string " + strError1, RetVal, -1
+
+RetVal = SearchBuildOutput(BuildLog86loose, strError3)
+ValidateOutput "Step 12", "Verify that " + ProjectFolder + "AMD86_loose.log doesn't contains string " + strError3, RetVal, -1
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+RetVal = BuildProjectwithOptions(ProjectPath, Buildlog86strict, " -a AMD86_strict")
+ValidateOutput "Step 13", "Build AMD86_strict release", RetVal, 0
+
+
+'**** BUILD VALIDATION ****
+RetVal = SearchBuildOutput(Buildlog86strict, strError2)
+ValidateOutput "Step 14", "Verify that " + ProjectFolder + "AMD86_strict.log contains string " + strError2, RetVal, 0
+
+RetVal = SearchBuildOutput(Buildlog86strict, strError3)
+ValidateOutput "Step 15", "Verify that " + ProjectFolder + "AMD86_strict.log contains string " + strError3, RetVal, 0
+
+RetVal = SearchBuildOutput(Buildlog86strict, strWarning1)
+ValidateOutput "Step 16", "Verify that " + ProjectFolder + "AMD86_strict.log doesn't contains string " + strWarning1, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog86strict, strWarning2)
+ValidateOutput "Step 17", "Verify that " + ProjectFolder + "AMD86_strict.log doesn't contains string " + strWarning2, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog86strict, strWarning3)
+ValidateOutput "Step 18", "Verify that " + ProjectFolder + "AMD86_strict.log doesn't contains string " + strWarning3, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog86strict, strWarning4)
+ValidateOutput "Step 19", "Verify that " + ProjectFolder + "AMD86_strict.log doesn't contains string " + strWarning4, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog86strict, strWarning5)
+ValidateOutput "Step 20", "Verify that " + ProjectFolder + "AMD86_strict.log contains string " + strWarning5, RetVal, 0
+
+RetVal = SearchBuildOutput(Buildlog86strict, strWarning6)
+ValidateOutput "Step 21", "Verify that " + ProjectFolder + "AMD86_strict.log contains string " + strWarning6, RetVal, 0
+
+RetVal = SearchBuildOutput(Buildlog86strict, strWarning7)
+ValidateOutput "Step 22", "Verify that " + ProjectFolder + "AMD86_strict.log contains string " + strWarning7, RetVal, 0
+
+RetVal = SearchBuildOutput(Buildlog86strict, strError1)
+ValidateOutput "Step 23", "Verify that " + ProjectFolder + "AMD86_strict.log doesn't contains string " + strError1, RetVal, -1
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+RetVal = BuildProjectwithOptions(ProjectPath, Buildlog64loose, " -a AMD64_loose")
+ValidateOutput "Step 24", "Build AMD64_loose release", RetVal, 0
+
+
+'**** BUILD VALIDATION ****
+RetVal = SearchBuildOutput(Buildlog64loose, strError2)
+ValidateOutput "Step 25", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't contains string " + strError2, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64loose, strError3)
+ValidateOutput "Step 26", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't contains string " + strError3, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64loose, strWarning1)
+ValidateOutput "Step 27", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't contains string " + strWarning1, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64loose, strWarning2)
+ValidateOutput "Step 28", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't  contains string " + strWarning2, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64loose, strWarning3)
+ValidateOutput "Step 29", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't contains string " + strWarning3, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64loose, strWarning4)
+ValidateOutput "Step 30", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't  contains string " + strWarning4, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64loose, strWarning5)
+ValidateOutput "Step 31", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't contains string " + strWarning5, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64loose, strWarning6)
+ValidateOutput "Step 32", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't contains string " + strWarning6, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64loose, strWarning7)
+ValidateOutput "Step 33", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't contains string " + strWarning7, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64loose, strError1)
+ValidateOutput "Step 34", "Verify that " + ProjectFolder + "AMD64_loose.log doesn't  contains string " + strError1, RetVal, -1
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+RetVal = BuildProjectwithOptions(ProjectPath, Buildlog64strict, " -a AMD64_strict")
+ValidateOutput "Step 35", "Build AMD64_strict release", RetVal, 0
+
+
+'**** BUILD VALIDATION ****
+RetVal = SearchBuildOutput(Buildlog64strict, strError2)
+ValidateOutput "Step 36", "Verify that " + ProjectFolder + "AMD64_strict.log doesn't contains string " + strError2, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64strict, strError3)
+ValidateOutput "Step 37", "Verify that " + ProjectFolder + "AMD64_strict.log doesn't contains string " + strError3, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64strict, strWarning1)
+ValidateOutput "Step 38", "Verify that " + ProjectFolder + "AMD64_strict.log contains string " + strWarning1, RetVal, 0
+
+RetVal = SearchBuildOutput(Buildlog64strict, strWarning2)
+ValidateOutput "Step 39", "Verify that " + ProjectFolder + "AMD64_strict.log contains string " + strWarning2, RetVal, 0
+
+RetVal = SearchBuildOutput(Buildlog64strict, strWarning3)
+ValidateOutput "Step 40", "Verify that " + ProjectFolder + "AMD64_strict.log contains string " + strWarning3, RetVal, 0
+
+RetVal = SearchBuildOutput(Buildlog64strict, strWarning4)
+ValidateOutput "Step 41", "Verify that " + ProjectFolder + "AMD64_strict.log contains string " + strWarning4, RetVal, 0
+
+RetVal = SearchBuildOutput(Buildlog64strict, strWarning5)
+ValidateOutput "Step 42", "Verify that " + ProjectFolder + "AMD64_strict.log doesn't contains string " + strWarning5, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64strict, strWarning6)
+ValidateOutput "Step 43", "Verify that " + ProjectFolder + "AMD64_strict.log doesn't contains string " + strWarning6, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64strict, strWarning7)
+ValidateOutput "Step 44", "Verify that " + ProjectFolder + "AMD64_strict.log doesn't contains string " + strWarning7, RetVal, -1
+
+RetVal = SearchBuildOutput(Buildlog64strict, strError1)
+ValidateOutput "Step 45", "Verify that " + ProjectFolder + "AMD64_strict.log contains string " + strError1, RetVal, 0
+
+
+'**** POST CLEANUP ****
+Set Wshell = Nothing
+Set FSO = Nothing
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+</script>
+</job>

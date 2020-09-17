@@ -1,0 +1,79 @@
+<job id="ISMSI_PtchDsg_ManifstAsInvokr_BVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs" />
+<script language="VBScript">
+
+On Error Resume Next  
+
+'**** TEST CASE DESCRIPTION ****
+'This test verifies that when you build a patch, Update.exe uses a manifest that the Updated Msi setup used. 
+'This test verifies that if the Updated Msi (Releas2) had a Required Execution Level value of "asInvoker", then the Patch would have a manifest set to "asInvoker" as well. 
+'This test verifies the InstallScript Msi patch case.
+
+
+'**** OBJECT CREATION ****
+Set WShell = CreateObject("WScript.Shell")
+Set FSO = CreateObject("Scripting.FileSystemObject")
+
+
+'**** VARIABLE DECLARATION ****
+ProjectName = "ISMSI_PtchDsg_ManifstAsInvokr_BVT"
+ProjectFolder = GetProjectFolder()
+
+strResultOutput = ProjectFolder + "\" + "TestResult.txt"
+strIsmFileName = ProjectFolder + ProjectName + ".ism"
+UpdateSetupPath = ProjectFolder + ProjectName + "\PatchConfiguration1\Patch\Update.exe"
+strBuildLog = ProjectFolder + "\AutoBuildLog.txt"
+UpdManifestFilePath = ProjectFolder + "Update.manifest"
+mtFilePath = ProjectFolder + "\TestData\mt.exe"
+
+strOption1 = " -patch_config PatchConfiguration1"
+ExtractManifest = mtFilePath + " -inputresource:" + chr(34) + UpdateSetupPath + chr(34) + " -out:" + chr(34) + UpdManifestFilePath + chr(34)
+StringInFile = "<requestedExecutionLevel level=" + chr(34) + "asInvoker" + chr(34)
+
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput, True
+End If
+
+If FSO.FileExists(UpdManifestFilePath) Then
+	FSO.DeleteFile UpdManifestFilePath, True
+End If
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****	
+Retval = BuildProjectwithOptions(strIsmFileName, strBuildLog, strOption1)
+ValidateOutput "Step 1", "Build patch", Retval, 0
+
+
+'**** BUILD VALIDATION ****	
+Retval = SearchBuildOutput(strBuildLog, "0 Errors and 0 Warnings")
+ValidateOutput "Step 2", "Search output for '0 Errors and 0 Warnings'", Retval, 0
+
+Retval = FileExist(UpdateSetupPath)
+ValidateOutput "Step 3", "Verify that " + UpdateSetupPath + " exists", Retval, 0
+
+Retval = RunCommandWithOptions(ExtractManifest, 1)
+ValidateOutput "Step 4", "Run Command " + ExtractManifest, Retval, 0
+
+Retval = FileExist(UpdManifestFilePath)
+ValidateOutput "Step 5", "Verify that " + UpdManifestFilePath + " exists", Retval, 0
+
+'Verify Update.manifest has the line '<requestedExecutionLevel level='asInvoker'"
+Retval = FindStringInFile(UpdManifestFilePath, StringInFile)
+ValidateOutput "Step 6", "Verify Update.manifest has the line '<requestedExecutionLevel level='asInvoker'", Retval, 0
+
+
+'**** POST-CLEANUP ****	
+Set WShell = Nothing
+Set FSO = Nothing
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+</script>
+</job>
+
+
+

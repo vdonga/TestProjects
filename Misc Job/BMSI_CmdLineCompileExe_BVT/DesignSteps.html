@@ -1,0 +1,52 @@
+<html><TITLE>Save Grid result as HTML File</TITLE>
+<body><table><tr BGCOLOR="#800000"><td ><b><font color=white>Attachment&nbsp</font></b></td><td ><b><font color=white>Step Name&nbsp</font></b></td><td ><b><font color=white>Description&nbsp</font></b></td><td ><b><font color=white>Expected Result&nbsp</font></b></td></tr><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 1</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Copy the project folder from&lt;br&gt;\\testengineering\Testing\ISPro\TestCases\MediaBuild\Compile_BVT&lt;br&gt;to the C:\ root folder on the test machine.&lt;br&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 2</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Open the IPR file in the IDE.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">The project should open without error.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 3</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Add the following to the include section of setup.rul:<br>#include &quot;TestLibFunction.h&quot;<br><br>At the bottom of the script file add:<br>#include &quot;TestLibFunction.rul&quot;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 4</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Save the project.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">The project should save without error.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 5</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Execute the following from the command line:<br>C:\\Program Files\Common Files\InstallShield\IScript&gt;Compile &quot;C:\Compile_BVT\Scri<br>pt Files\setup.rul&quot; -i&quot;C:\Program Files\InstallShield\Professional 6.3\Script\If<br>x\Include&quot; -i&quot;C:\Program Files\InstallShield\Professional 6.3\Script\Isrt\Includ<br>e&quot; -i&quot;C:\Compile_BVT\extra_scripts&quot; -libpath&quot;C:\Program Files\Installshield\Prof<br>essional 6.3\Script\Ifx\Lib&quot; -libpath&quot;C:\Program Files\InstallShield\Professiona<br>l 6.3\Script\Isrt\Lib&quot; ifx.obl isrt.obl</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">This should compile the setup.rul file without error.<br>The following files should be created in the Script Files subfolder of the project folder:<br>setup.inx<br>setup.map<br>setup.obs</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 6</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Delete these files (Setup.inx, setup.map, setup.obs) from the Script Files folder.<br>and rerun the command line in step 5 with the -g param at the end:<br><br>C:\Program Files\Common Files\InstallShield\IScript&gt;Compile &quot;C:\Compile_BVT\Scri<br>pt Files\setup.rul&quot; -i&quot;C:\Program Files\InstallShield\Professional 6.3\Script\If<br>x\Include&quot; -i&quot;C:\Program Files\InstallShield\Professional 6.3\Script\Isrt\Includ<br>e&quot; -i&quot;C:\Compile_BVT\extra_scripts&quot; -libpath&quot;C:\Program Files\Installshield\Prof<br>essional 6.3\Script\Ifx\Lib&quot; -libpath&quot;C:\Program Files\InstallShield\Professiona<br>l 6.3\Script\Isrt\Lib&quot; ifx.obl isrt.obl -g</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">This should recreate the setup.inx, setup.map, and setup.obs files and should also create a debugging file setup.dbg. Note the size of setup.inx for the next step.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 7</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Delete all of the files in the Script Files folder except for Setup.rul.<br>Rerun the previous command line compile with the -gi param at the end:<br><br>C:\Program Files\Common Files\InstallShield\IScript&gt;Compile &quot;C:\Compile_BVT\Scri<br>pt Files\setup.rul&quot; -i&quot;C:\Program Files\InstallShield\Professional 6.3\Script\If<br>x\Include&quot; -i&quot;C:\Program Files\InstallShield\Professional 6.3\Script\Isrt\Includ<br>e&quot; -i&quot;C:\Compile_BVT\extra_scripts&quot; -libpath&quot;C:\Program Files\Installshield\Prof<br>essional 6.3\Script\Ifx\Lib&quot; -libpath&quot;C:\Program Files\InstallShield\Professiona<br>l 6.3\Script\Isrt\Lib&quot; ifx.obl isrt.obl -gi</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">This should create all the files from before except there will be no setup.dbg file and setup.inx should be larger in size than before.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 8</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">This step should create testlibfunction.obs (this can later be turned into a library file to compile setup.rul with).&lt;br&gt;Run the following command line:&lt;br&gt;C:\Program Files\Common Files\InstallShield\IScript&amp;gt;compile &amp;quot;C:\Compile_BVT\extr&lt;br&gt;a_scripts\TestLibFunction.rul&amp;quot; -i&amp;quot;C:\Program Files\InstallShield\Professional 6.3\Script\Ifx\Include&amp;quot; -i&amp;quot;C:\Program Files\InstallShield\Professional 6.3\Script\Isrt\Include&amp;quot; -i&amp;quot;C:\my installations\compile_bvt\extra_scripts&amp;quot; -c</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">There should be no errors during compilation.<br>The TestLibFunction.obs file should be added to the extra_scripts subfolder under the project folder</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 9</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">This step creates and renames the obs file in a new location.&lt;br&gt;Run the following command line:&lt;br&gt;C:\Program Files\Common Files\InstallShield\IScript&amp;gt;compile &amp;quot;C:\Compile_BVT\extr&lt;br&gt;a_scripts\TestLibFunction.rul&amp;quot; ifx.obl isrt.obl -libpath&amp;quot;C:\Program Files\InstallShield\Professional 6.3\Script\Ifx\Lib&amp;quot; -libpath&amp;quot;C:\Program Files\InstallShield\Professional 6.3\Script\Isrt\Lib&amp;quot; -i&amp;quot;C:\Program Files\InstallShield\Professional 6.3\Script\Ifx\Include&amp;quot; -i&amp;quot;C:\Program Files\InstallShield\Professional 6.3\Script\Isrt\Include&amp;quot; -i&amp;quot;C:\my installations\compile_bvt\extra_scripts&amp;quot; &amp;nbsp;-o&amp;quot;C:\CompilingTest\TestLib.obs&amp;quot;&lt;br&gt;Note: Make sure that C:\CompilingTest exists before running this command.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">This should create two files in the C:\CompilingTest folder.<br>TestLib.obs<br>TestLib.map</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 10</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">This will create a library file for the testllibfunction.rul.<br>C:\Program Files\Common Files\InstallShield\IScript&gt;compile &quot;C:\Compile_BVT\extr<br>a_scripts\TestLibFunction.obs&quot; -l</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">This should create a file called &quot;TestLibFunction.obl&quot; in the extra_scripts subfolder of the project folder.</pre></font></TD>
+</TR></table></body></html>

@@ -1,0 +1,86 @@
+Steps to create BasicMSI_Pure64bit_AMD64Support_BVT.ism
+-------------------------------------------------------------
+1. Create a Basic MSI project with name: BasicMSI_Pure64bit_AMD64Support_BVT
+2. Add four product configurations and four releases with names: AMD86_loose, AMD86_strict, AMD64_loose, and AMD64_strict
+3. Set teplate summary to AMD64 for AMD64_loose and AMD64_strict
+4. Copy below files to testdata location:
+com 64 bit folder from \\schdevengfs\Testing\Sample Source Files
+MyMfcDll.dll form \\schdevengfs\Testing\Sample Source Files\DLL Files
+MsiDLL2.dll too Testdata location form \\schdevengfs\Testing\ISWI\TestCases\CustomActions
+NOTEPAD.EXE file from \\schdevengfs\Testing\Sample Source Files\EXE Files
+4. Add all 4 files from com 64 bit folder to installdir
+5. Add MyMfcDll.dll and MsiDLL2.dll to installdir
+6. Add a component with name: Component64bit and set 64-bit property to yes
+7. Add notepad.exe to Component64bit component
+8. Add one CA EXE -> InstallWithProduct and rename it to EXEInstallWithProduct
+9. Set file to TestAtlExe32.exe
+10 Add another CA MSIDLL -> StoredInBinary and rename it to MSIStoredinBinary
+11. Set file to MyMfcDll.dll
+12. Save and close the project
+
+
+
+
+
+SetPlatformValidation.vbs code:
+------------------------------------------
+
+	Set Wshell = CreateObject("WScript.Shell")
+	Set FSO = CreateObject("Scripting.FileSystemObject")
+	Set AutoHelper = CreateObject("AutomationHelper.AutomationLayerHelper")
+	Set args = WScript.Arguments
+	sPath = args.Item(0)
+	ISVersion = args.Item(1)
+
+	ISWI = "ISWiAuto"+ISVersion+".ISWiProject"
+	Set pProject = CreateObject(ISWI) 
+		
+    pProject.OpenProject sPath, True 
+	
+
+	Set pProdConfig1 = pProject.ISWiProductConfigs("AMD64_strict")
+	Set pProdConfig2 = pProject.ISWiProductConfigs("AMD86_strict")
+
+	'Setting Platform Validation to Strict. Use 1 for Strict, 0 for Linient
+	pProdConfig1.PlatformValidation = 1
+	pProdConfig2.PlatformValidation = 1
+	
+	pProject.SaveProject
+	pProject.CloseProject
+	
+	'Define Product Configuration name in Array
+	strPConfig = Array("AMD64_strict", "AMD86_strict")
+	
+	RetVal = 1
+
+	For j = 0 To UBound(strPConfig) 
+		'Query to check value in Table ISProductConfigurationProperty
+		pSQL = "SELECT `Value` FROM `ISProductConfigurationProperty` WHERE `ISProductConfiguration_` = '"&strPConfig(j)&"' AND `Property` = 'PlatformValidation'"	
+		Fail = 0
+		'Execute Query
+		Call AutoHelper.SQLQuery(pSQL, sPath, ismProperty)
+		'Compare Result
+		Call AutoHelper.compare("1", ismProperty, i, Fail)
+		
+		RetVal = Fail
+		If RetVal = 1 Then
+			'Stop the execution if RetVal = 1
+			WScript.echo "-1"
+			WScript.Quit
+		End If
+			
+	Next
+
+'Sending message to QTP
+If RetVal = 0 Then
+	WScript.echo "0"
+Else
+	WScript.echo "-1"
+End If
+		
+
+Set Wshell = Nothing
+Set FSO = Nothing
+Set AutoHelper = Nothing
+Set args = Nothing
+

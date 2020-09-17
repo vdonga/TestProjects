@@ -1,0 +1,57 @@
+<html><TITLE>Save Grid result as HTML File</TITLE>
+<body><table><tr BGCOLOR="#800000"><td ><b><font color=white>Attachment&nbsp</font></b></td><td ><b><font color=white>Step Name&nbsp</font></b></td><td ><b><font color=white>Description&nbsp</font></b></td><td ><b><font color=white>Expected Result&nbsp</font></b></td></tr><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 1</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Prerequisites: &lt;br&gt;Create a new Basic MSI project named &lt;b&gt;BasicMSI_Pure64bit_EXECA_StoredInBinary_BVT.ism &lt;/b&gt;&lt;br&gt;Go to the Releases view Add four product configurations named &lt;b&gt;x86_loose&lt;/b&gt;, &lt;b&gt;x86_strict&lt;/b&gt;, &lt;b&gt;x64_loose&lt;/b&gt;, and &lt;b&gt;x64_strict&lt;/b&gt;. &lt;br&gt;Select &lt;b&gt;x86_loose&lt;/b&gt; Set the &lt;b&gt;Platform Validation&lt;/b&gt; setting to &lt;b&gt;Lenient&lt;/b&gt; &lt;br&gt;Select &lt;b&gt;x86_strict&lt;/b&gt; Set the &lt;b&gt;Platform Validation&lt;/b&gt; setting to &lt;b&gt;Strict&lt;/b&gt; &lt;br&gt;Select &lt;b&gt;x64_loose&lt;/b&gt; Change the &lt;b&gt;Template Summary&lt;/b&gt; setting to contain &lt;b&gt;x64&lt;/b&gt; Set the &lt;b&gt;Platform Validation&lt;/b&gt; setting to &lt;b&gt;Lenient&lt;/b&gt; &lt;br&gt;Select &lt;b&gt;x64_strict&lt;/b&gt; Change the &lt;b&gt;Template Summary&lt;/b&gt; setting to contain &lt;b&gt;x64&lt;/b&gt; Set the &lt;b&gt;Platform Validation&lt;/b&gt; setting to &lt;b&gt;Strict&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Prerequisites performed without any error</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 2</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Copy TestAtlExe64.exe to Testdata location form \\schdevengfs\Testengineering\Testing\Sample Source Files\com 64bit&lt;br&gt;Copy notepad.exe to Testdata location from \\schdevengfs\Testengineering\Testing\Sample Source Files\EXE files</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">File Copied</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 3</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Add notepad.exe to INSTALLDIR</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">File added</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 4</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Go to custom action and sequences view and add a custom action:&lt;br&gt;New Exe -&amp;gt; Stored In Binary Table&lt;br&gt;Rename to ExeStoredInBinary</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Custom Action Added</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 5</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Give Executable FileKey to TestAtlExe64.exe&lt;br&gt;Leave other properties as default values</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Custom Action configured</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 6</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Go to releases view and and add releases under each product configurations</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Releases get added</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 7</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build &lt;b&gt;x86_loose&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should not get error:&lt;br&gt;ISDEV : error -7320: 64-bit EXE Custom Action ExeStoredInBinary must not be included in a strict 32-bit package</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 8</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build &lt;b&gt;x86_strict&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should get error: &lt;br&gt;ISDEV : error -7320: 64-bit EXE Custom Action ExeStoredInBinary must not be included in a strict 32-bit package</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 9</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build &lt;b&gt;x64_loose&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should not get error:&lt;br&gt;ISDEV : error -7320: 64-bit EXE Custom Action ExeStoredInBinary must not be included in a strict 32-bit package</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 10</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build &lt;b&gt;x64_strict&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should not get error:&lt;br&gt;ISDEV : error -7320: 64-bit EXE Custom Action ExeStoredInBinary must not be included in a strict 32-bit package</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 11</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Close IDE</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">IDE closed</pre></font></TD>
+</TR></table></body></html>

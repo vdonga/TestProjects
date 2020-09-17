@@ -1,0 +1,92 @@
+<job id = "BMSI_CA_PureX64EXEStoreInBinX64File_BVT">
+<script language = "VBScript" src = "..\..\..\CoreLibs\iscorelib.vbs"/>
+<script language = "VBScript">
+
+On Error Resume Next  
+
+'**** TEST CASE DESCRIPTION ****
+'The main objective of this TC is to verif the error message when and EXE CA is added
+'Basic MSI Custom Actions Pure 64bit EXE Stored in Binary 64 bit file
+
+
+'**** OBJECT CREATION ****
+Set Wshell = CreateObject("WScript.Shell")
+Set FSO = CreateObject("Scripting.FileSystemObject")
+
+
+'**** VARIABLE DECLARATION ****
+strProjectName = "BMSI_CA_PureX64EXEStoreInBinX64File_BVT" 
+ProjectFolder = GetProjectFolder()
+strResultOutput = ProjectFolder + "TestResult.txt"
+
+ProjectPath = ProjectFolder + strProjectName + ".ism"
+
+strVbsFilePath = ProjectFolder + "TestData\SetPlatformValidation.vbs"
+strError = "ISDEV : error -7320: 64-bit EXE Custom Action ExeStoredInBinary must not be included in a strict 32-bit package"
+
+BuildLog1 = ProjectFolder + "x86_loose.log"
+BuildLog2 = ProjectFolder + "x86_strict.log"
+BuildLog3 = ProjectFolder + "x64_loose.log"
+Buildlog4 = ProjectFolder + "x64_strict.log"
+
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput, True
+End If
+
+'Setting Automation Layer Support
+RetVal = AutomationLayerSupport(ProjectPath, strVbsFilePath)
+ValidateOutput "Step 1", "Apply " + strVbsFilePath +" on " + strProjectName, RetVal, 0
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+RetVal = BuildProjectwithOptions(ProjectPath, BuildLog1, " -a x86_loose")
+ValidateOutput "Step 2", "Build x86_loose release", RetVal, 0
+
+
+'**** BUILD VALIDATION ****
+RetVal = SearchBuildOutput(BuildLog1, strError)
+ValidateOutput "Step 3", "Verify that " + BuildLog1 + " doesn't contains string " + strError, RetVal, -1
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+RetVal = BuildProjectwithOptions(ProjectPath, BuildLog2, " -a x86_strict")
+ValidateOutput "Step 4", "Build x86_strict release", RetVal, 0
+
+
+'**** BUILD VALIDATION ****
+RetVal = SearchBuildOutput(BuildLog2, strError)
+ValidateOutput "Step 5", "Verify that " + BuildLog2 + " contains string " + strError, RetVal, 0
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+RetVal = BuildProjectwithOptions(ProjectPath, BuildLog3, " -a x64_loose")
+ValidateOutput "Step 6", "Build x64_loose release", RetVal, 0
+
+
+'**** BUILD VALIDATION ****
+RetVal = SearchBuildOutput(BuildLog3, strError)
+ValidateOutput "Step 7", "Verify that " + BuildLog3 + " doesn't contains string " + strError, RetVal, -1
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+RetVal = BuildProjectwithOptions(ProjectPath, BuildLog4, " -a x64_strict")
+ValidateOutput "Step 8", "Build x64_strict release", RetVal, 0
+
+
+'**** BUILD VALIDATION ****
+RetVal = SearchBuildOutput(BuildLog4, strError)
+ValidateOutput "Step 9", "Verify that " + BuildLog4 + " doesn't contains string " + strError, RetVal, -1
+
+
+'**** POST CLEANUP ****
+Set FSO = nothing
+Set Wshell = nothing
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+</script>
+</job>

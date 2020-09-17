@@ -1,0 +1,77 @@
+<html><TITLE>Save Grid result as HTML File</TITLE>
+<body><table><tr BGCOLOR="#800000"><td ><b><font color=white>Attachment&nbsp</font></b></td><td ><b><font color=white>Step Name&nbsp</font></b></td><td ><b><font color=white>Description&nbsp</font></b></td><td ><b><font color=white>Expected Result&nbsp</font></b></td></tr><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 1</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Prerequisites: &lt;br&gt;Create a new Basic MSI project named &lt;b&gt;BasicMSI_Pure64bit_AMD64Support_BVT.ism&lt;/b&gt;&lt;br&gt;Go to the Releases view Add four product configurations named &lt;b&gt;AMD86_loose&lt;/b&gt;, &lt;b&gt;AMD86_strict&lt;/b&gt;, &lt;b&gt;AMD64_loose&lt;/b&gt;, and &lt;b&gt;AMD64_strict&lt;/b&gt;. &lt;br&gt;Select &lt;b&gt;AMD86_loose&lt;/b&gt; Set the &lt;b&gt;Platform Validation&lt;/b&gt; setting to &lt;b&gt;Lenient&lt;/b&gt; &lt;br&gt;Select &lt;b&gt;AMD86_strict&lt;/b&gt; Set the &lt;b&gt;Platform Validation&lt;/b&gt; setting to &lt;b&gt;Strict&lt;/b&gt; &lt;br&gt;Select &lt;b&gt;AMD64_loose&lt;/b&gt; Change the &lt;b&gt;Template Summary&lt;/b&gt; setting to &lt;b&gt;x64&lt;/b&gt; Set the &lt;b&gt;Platform Validation&lt;/b&gt; setting to &lt;b&gt;Lenient&lt;/b&gt; &lt;br&gt;Select &lt;b&gt;AMD64_strict&lt;/b&gt; Change the &lt;b&gt;Template Summary&lt;/b&gt; setting to &lt;b&gt;x64&lt;/b&gt; Set the &lt;b&gt;Platform Validation&lt;/b&gt; setting to &lt;b&gt;Strict&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Prerequisites performed without any error</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 2</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Copy below files from to testdata location:&lt;br&gt;1. com 64 bit folder from \\schdevengfs\Testing\Sample Source Files&lt;br&gt;2. MyMfcDll.dll form \\schdevengfs\Testing\Sample Source Files\DLL Files&lt;br&gt;3. MsiDLL2.dll file to Testdata location form \\schdevengfs\Testing\ISWI\TestCases\CustomActions</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">All files have been coppied</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 3</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Add all 4 files from com 64 bit folder to installdir&lt;br&gt;Add MyMfcDll.dll and MsiDLL2.dll to installdir</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Files added to installdir</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 4</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Add a component with name: Component64bit and set 64-bit property to yes</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Component added and property set to yes</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 5</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Add notepad.exe to Component64bit component</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">file added</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 6</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Add one CA with type EXE -&amp;gt; InstallWithProduct and rename it to EXEInstallWithProduct</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">CA added</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 7</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set executable file key to TestAtlExe32.exe</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Value set</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 8</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Add another CA with type MSIDLL -&amp;gt; StoredInBinary and rename it to MSIStoredinBinary</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">CA added</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 9</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set DLL file key to MyMfcDll.dll</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">value set</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 10</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Go to releases view and add releases under each product configuration</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Releases added</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 11</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build &lt;b&gt;AMD64_loose&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should not get below errors and warnings:&lt;br&gt;ISDEV : warning -7326: Including 32-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\com 64bit\TestActiveX32.ocx in a strict 64-bit package&lt;br&gt;ISDEV : warning -7326: Including 32-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\com 64bit\TestAtlExe32.exe in a strict 64-bit package&lt;br&gt;ISDEV : warning -7326: Including 32-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\MsiDLL2.dll in a strict 64-bit package&lt;br&gt;ISDEV : warning -7326: Including 32-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\NOTEPAD.EXE in a strict 64-bit package&lt;br&gt;ISDEV : error -7319: 32-bit EXE Custom Action EXEInstallWithProduct must not be included in a strict 64-bit package&lt;br&gt;ISDEV : error -7320: 64-bit MSI DLL Custom Action MSIStoredinBinary must not be included in a strict 32-bit package&lt;br&gt;ISDEV : error -5008: Intel64 or AMD64 must be specified in the template of the Summary Stream&lt;br&gt;ISDEV : warning -7327: Including 64-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\com 64bit\TestActiveX64.ocx in a strict 32-bit package&lt;br&gt;ISDEV : warning -7327: Including 64-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\com 64bit\TestAtlExe64.exe in a strict 32-bit package&lt;br&gt;ISDEV : warning -7327: Including 64-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\MyMfcDll.dll in a strict 32-bit package</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 12</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build &lt;b&gt;AMD64_strict&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should get below errors and warnings:&lt;br&gt;ISDEV : warning -7326: Including 32-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\com 64bit\TestActiveX32.ocx in a strict 64-bit package&lt;br&gt;ISDEV : warning -7326: Including 32-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\com 64bit\TestAtlExe32.exe in a strict 64-bit package&lt;br&gt;ISDEV : warning -7326: Including 32-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\MsiDLL2.dll in a strict 64-bit package&lt;br&gt;ISDEV : warning -7326: Including 32-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\NOTEPAD.EXE in a strict 64-bit package&lt;br&gt;ISDEV : error -7319: 32-bit EXE Custom Action EXEInstallWithProduct must not be included in a strict 64-bit package</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 13</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build &lt;b&gt;AMD86_loose&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should get below error:&lt;br&gt;ISDEV : error -5008: Intel64 or AMD64 must be specified in the template of the Summary Stream</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 14</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build &lt;b&gt;AMD86_strict&lt;/b&gt;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should get below errors and warnings:&lt;br&gt;ISDEV : error -5008: Intel64 or AMD64 must be specified in the template of the Summary Stream&lt;br&gt;ISDEV : warning -7327: Including 64-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\com 64bit\TestActiveX64.ocx in a strict 32-bit package&lt;br&gt;ISDEV : warning -7327: Including 64-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\com 64bit\TestAtlExe64.exe in a strict 32-bit package&lt;br&gt;ISDEV : warning -7327: Including 64-bit PE file C:\IS_Automation\BasicMSI_Pure64bit_AMD64Support_BVT\MyMfcDll.dll in a strict 32-bit package&lt;br&gt;ISDEV : error -7320: 64-bit MSI DLL Custom Action MSIStoredinBinary must not be included in a strict 32-bit package</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 15</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Close IDE</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">IDE closed</pre></font></TD>
+</TR></table></body></html>

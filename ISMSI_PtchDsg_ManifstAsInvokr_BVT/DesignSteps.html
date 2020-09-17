@@ -1,0 +1,32 @@
+<html><TITLE>Save Grid result as HTML File</TITLE>
+<body><table><tr BGCOLOR="#800000"><td ><b><font color=white>Attachment&nbsp</font></b></td><td ><b><font color=white>Step Name&nbsp</font></b></td><td ><b><font color=white>Description&nbsp</font></b></td><td ><b><font color=white>Expected Result&nbsp</font></b></td></tr><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 1</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">*** This test needs to be run on a machine with .NET 2.0. The tool MT.exe (that extracts the manifest from update.exe) requires .NET 2.0.***&lt;br&gt;&lt;br&gt;&lt;br&gt;Copy the following folder to root C:\ drive:&lt;br&gt;&lt;br&gt;\\testengineering\testing\iswi\TestCases\Patch Design View\RequiredExecutionLevel</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should copy without error.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 2</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Open Patch_Manifest_InstallScriptMsi_AsInvoker.ism.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should upgrade (if necessary) and open without error.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 3</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Go to Patch DesignView.&lt;br&gt;Build PatchConfiguration1.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should build the patch without any errors or warnings.&lt;br&gt;Verify that update.exe was built.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 4</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Copy MT.exe from &amp;quot;\\testengineering\testing\TestTools\ManifestValidation&amp;quot; locally.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should copy without error.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 5</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Copy Update.exe to the same folder as MT.exe.&lt;br&gt;Run the following commandline:&lt;br&gt;&lt;br&gt;MT.exe -inputresource:&amp;quot;Update.exe&amp;quot; -out:&amp;quot;Update.manifest&amp;quot;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">This should create a file named Update.manifest in this folder.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 6</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Open Update.manifest in Notepad.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it has the following XML tags:&lt;br&gt;&lt;br&gt;&amp;lt;trustInfo xmlns=&amp;quot;urn:schemas-microsoft-com:asm.v3&amp;quot;&amp;gt;&lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;lt;security&amp;gt;&lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;lt;requestedPrivileges&amp;gt;&lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&amp;lt;&lt;/b&gt;&lt;font color=&quot;#FF0000&quot;&gt;&lt;b&gt;requestedExecutionLevel level=&amp;quot;asInvoker&amp;quot; &lt;/b&gt;&lt;/font&gt;uiAccess=&amp;quot;false&amp;quot;&amp;gt;&amp;lt;/requestedExecutionLevel&amp;gt;&lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;lt;/requestedPrivileges&amp;gt;&lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;lt;/security&amp;gt;&lt;br&gt;&amp;lt;/trustInfo&amp;gt;</pre></font></TD>
+</TR></table></body></html>

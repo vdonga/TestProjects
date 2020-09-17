@@ -1,0 +1,293 @@
+<job id="BMSI_CmdLineCompileExe_BVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs" />
+<script language="VBScript">
+
+On Error Resume Next  
+
+'**** TEST CASE DESCRIPTION ****
+'Modified the static path to relative path in Setup.rul and TestLibFunction.rul files.
+'Checking the condition for size of the Setup.inx file using IF condition.
+
+
+'**** OBJECT CREATION ****
+Set WShell = CreateObject("WScript.Shell")
+Set FSO = CreateObject("Scripting.FileSystemObject")
+
+
+'**** VARIABLE DECLARATION ****
+strProjectName = "BMSI_CmdLineCompileExe_BVT"
+strProjectFolder = GetProjectFolder()
+
+strResultOutput = strProjectFolder + "\" + "TestResult.txt"
+strIsmFileName = strProjectFolder + "\" + strProjectName + ".ism"
+
+strLogFIlePath1 = strProjectFolder + "\strLogFIlePath1.log"
+strLogFIlePath2 = strProjectFolder + "\strLogFIlePathg.log"
+strLogFIlePath3 = strProjectFolder + "\strLogFIlePathgi.log"
+strLogFIlePath4 = strProjectFolder + "\strLogFIlePathc.log"
+strLogFIlePath5 = strProjectFolder + "\strLogFIlePatho.log"
+strLogFIlePath6 = strProjectFolder + "\strLogFIlePath-l.log"
+InstallLocation = ISLocation()
+
+ScriptFilepath = strProjectFolder + "\" + strProjectName + "\Script Files"
+extraScriptFilepath = strProjectFolder + "\" + strProjectName + "\extra_scripts"
+
+BuildPath = chr(34) + InstallLocation + "\System\Compile.exe" + chr(34)
+SetupRul = " " + chr(34) + ScriptFilepath + "\Setup.rul" + chr(34)
+TestFunctionRul = " " + chr(34) + extraScriptFilepath + "\TestLibFunction.rul" + chr(34)
+Params = " ISWI.obl isrt.obl"
+
+Params = Params + " -libpath" + chr(34) +  InstallLocation + "\script\ISWI\lib" + chr(34)
+Params = Params + " -libpath" + chr(34) +  InstallLocation + "\script\isrt\lib" + chr(34)
+Params = Params + " -i" + chr(34) +  InstallLocation + "\script\ifx\include" + chr(34)
+Params = Params + " -i" + chr(34) +  InstallLocation + "\script\isrt\include" + chr(34)
+Params = Params + " -i" + chr(34) +  InstallLocation + "\script\include" + chr(34)
+Params = Params + " -i" + chr(34) +  InstallLocation + "\script\SQLRuntime\Include" + chr(34)
+Params = Params + " -i" + chr(34) +  InstallLocation + "\script\IISRuntime\Include" + chr(34)
+Params = Params + " -i" + chr(34) +  InstallLocation + "\script\XMLRuntime\Include" + chr(34)
+Params = Params + " -i" + chr(34) +  ScriptFilepath + chr(34)
+
+DefualtParams = SetupRul + Params
+CMDINPUT = BuildPath + DefualtParams
+
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput, True
+End If
+
+
+'**** COMPILE PROJECT ****
+Retval = CommnadLineOutPut(CMDINPUT, strLogFIlePath1)
+ValidateOutput "Step 1", "Execute the command" + CMDINPUT, Retval, 0
+
+
+'**** COMPILE VALIDATION ****
+Retval = FindStringInFile(strLogFIlePath1, "InstallShield Script Compiler")
+ValidateOutput "Step 2", "Find the text 'InstallShield Script Compiler' in the file " + strLogFIlePath1, Retval, 0
+
+Retval = FindStringInFile(strLogFIlePath1, "Compiling...")
+ValidateOutput "Step 3", "Find string 'Compiling...' in file" + strLogFIlePath1, Retval, 0
+
+Retval = FindStringInFile(strLogFIlePath1, "Linking...")
+ValidateOutput "Step 4", "Find String 'Linking...' in the file " + strLogFIlePath1, Retval, 0
+
+Retval = FindStringInFile(strLogFIlePath1, "Setup.inx - 0 error(s), 0 warning(s)")
+ValidateOutput "Step 5", "Find String 'Setup.inx - 0 error(s), 0 warning(s)' in file" + strLogFIlePath1, Retval, 0       
+
+Retval = FileExist(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 6", "Verify '" + ScriptFilepath + "\Setup.inx' was created", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.map")
+ValidateOutput "Step 7", "Verify " + ScriptFilepath + "\Setup.map' was created", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.obs")
+ValidateOutput "Step 8", "Verify " + ScriptFilepath + "\Setup.obs' was created", Retval, 0
+
+Retval = FileDelete(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 9", "Delete the file " + ScriptFilepath + "\Setup.inx", Retval, 0
+
+Retval = FileDelete(ScriptFilepath + "\Setup.map")
+ValidateOutput "Step 10", "Delete the file " + ScriptFilepath + "\Setup.map", Retval, 0
+
+Retval = FileDelete(ScriptFilepath + "\Setup.obs")
+ValidateOutput "Step 11", "Delete the file " + ScriptFilepath + "\Setup.obs", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 12", "Verify '" + ScriptFilepath + "\Setup.inx' was deleted", Retval, -1
+
+
+'**** COMPILE PROJECT ****
+'Test -g option
+CMDINPUT = BuildPath + DefualtParams + " -g"
+
+Retval = CommnadLineOutPut(CMDINPUT, strLogFIlePath2)
+ValidateOutput "Step 13", "Run the command " + CMDINPUT, Retval, 0
+
+
+'**** COMPILE VALIDATION ****
+Retval = FindStringInFile(strLogFIlePath2, "Setup.inx - 0 error(s), 0 warning(s)")
+ValidateOutput "Step 14", "Find String 'Setup.inx - 0 error(s), 0 warning(s)' in file" + strLogFIlePath2, Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 15", "Verify '" + ScriptFilepath + "\Setup.inx' was created", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.map")
+ValidateOutput "Step 16", "Verify " + ScriptFilepath + "\Setup.map' was created", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.obs")
+ValidateOutput "Step 17", "Verify " + ScriptFilepath + "\Setup.obs' was created", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.dbg")
+ValidateOutput "Step 18", "Verify " + ScriptFilepath + "\Setup.dbg' was created", Retval, 0
+
+
+'Get size of Setup.inx
+OrgSize = GetFileSize(ScriptFilepath + "\Setup.inx", "KB")
+
+Retval = FileDelete(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 19", "Delete the file " + ScriptFilepath + "\Setup.inx", Retval, 0
+
+Retval = FileDelete(ScriptFilepath + "\Setup.map")
+ValidateOutput "Step 20", "Delete the file " + ScriptFilepath + "\Setup.map", Retval, 0
+
+Retval = FileDelete(ScriptFilepath + "\Setup.obs")
+ValidateOutput "Step 21", "Delete the file " + ScriptFilepath + "\Setup.obs", Retval, 0
+
+Retval = FileDelete(ScriptFilepath + "\Setup.dbg")
+ValidateOutput "Step 22", "Delete the file " + ScriptFilepath + "\Setup.obs", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 23", "Verify " + ScriptFilepath + "\Setup.inx' was deleted", Retval, -1
+
+
+'**** COMPILE PROJECT ****
+'Test -gi option
+CMDINPUT = BuildPath + DefualtParams + " -gi"
+
+Retval = CommnadLineOutPut(CMDINPUT, strLogFIlePath3)
+ValidateOutput "Step 24", "Run the command " + CMDINPUT, Retval, 0
+
+
+'**** COMPILE VALIDATION ****
+Retval = FindStringInFile(strLogFIlePath3, "Setup.inx - 0 error(s), 0 warning(s)")
+ValidateOutput "Step 25", "Find string 'Setup.inx - 0 error(s), 0 warning(s)' in file " + strLogFIlePath3, Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 26", "Verify " + ScriptFilepath + "\Setup.inx' was created", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.map")
+ValidateOutput "Step 27", "Verify " + ScriptFilepath + "\Setup.map' was created", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.obs")
+ValidateOutput "Step 28", "Verify " + ScriptFilepath + "\Setup.obs' was created", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.dbg")
+ValidateOutput "Step 29", "Verify " + ScriptFilepath + "\Setup.dbg' was created", Retval, -1
+
+
+'Get size of Setup.inx
+NewSize = GetFileSize(ScriptFilepath + "\Setup.inx", "KB")
+Retval = 1
+If (NewSize > OrgSize) Then
+	Retval = 0
+End If
+ValidateOutput "Step 30", "Verify that Setup.inx is larger than when it was buitl with -g option." + vbnewline + "-g size: " + cstr(OrgSize) + vbnewline + "-gi size: " + cstr(NewSize), Retval, 0
+
+Retval = FileDelete(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 31", "Delete the file " + ScriptFilepath + "\Setup.inx", Retval, 0
+
+Retval = FileDelete(ScriptFilepath + "\Setup.map")
+ValidateOutput "Step 32", "Delete the file " + ScriptFilepath + "\Setup.map", Retval, 0
+
+Retval = FileDelete(ScriptFilepath + "\Setup.obs")
+ValidateOutput "Step 33", "Delete the file " + ScriptFilepath + "\Setup.obs", Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 34", "Verify " + ScriptFilepath + "\Setup.inx' was deleted", Retval, -1
+
+
+'**** COMPILE PROJECT ****
+DefualtParams = TestFunctionRul + Params
+CMDINPUT = BuildPath + DefualtParams + " -c"
+
+Retval = CommnadLineOutPut(CMDINPUT,strLogFIlePath4)
+ValidateOutput "Step 35", "Run the command " + CMDINPUT, Retval, 0
+
+
+'**** COMPILE VALIDATION ****
+Retval = FindStringInFile(strLogFIlePath4, "TestLibFunction.obs - 0 error(s), 0 warning(s)")
+ValidateOutput "Step 36", "Find string 'TestLibFunction.obs - 0 error(s), 0 warning(s)' in File" + strLogFIlePath4 , Retval, 0     
+
+Retval = FileExist(extraScriptFilepath + "\TestLibFunction.obs")
+ValidateOutput "Step 37", "Verify " + extraScriptFilepath + "\TestLibFunction.obs' was created", Retval, 0
+
+Retval = FileExist(extraScriptFilepath + "\TestLibFunction.isr")
+ValidateOutput "Step 38", "Verify " + extraScriptFilepath + "\TestLibFunction.isr' was created", Retval, 0
+
+Retval = FileExist(extraScriptFilepath + "\TestLibFunction.h")
+ValidateOutput "Step 39", "Verify " + extraScriptFilepath + "\TestLibFunction.h' was created", Retval, 0
+
+Retval = FileExist(extraScriptFilepath + "\TestLibFunction.rul")
+ValidateOutput "Step 40", "Verify " + extraScriptFilepath + "\TestLibFunction.rul' was created", Retval, 0
+
+Retval = FileDelete(extraScriptFilepath + "\TestLibFunction.obs")
+ValidateOutput "Step 41", "Delete the file " + extraScriptFilepath + "\TestLibFunction.obs", Retval, 0
+
+Retval = FileExist(extraScriptFilepath + "\TestLibFunction.obs")
+ValidateOutput "Step 42", "Verify " + extraScriptFilepath + "\TestLibFunction.obs' was deleted", Retval, -1
+
+
+'**** COMPILE PROJECT ****
+'Test -o option
+CMDINPUT = BuildPath + DefualtParams + " -o" + chr(34) + strProjectFolder + "\TestData\TestLib.obs" + chr(34)
+
+Retval = CommnadLineOutPut(CMDINPUT, strLogFIlePath5)
+ValidateOutput "Step 43", "Run the command " + CMDINPUT, Retval, 0
+
+
+'**** COMPILE VALIDATION ****
+Retval = FindStringInFile(strLogFIlePath5, "TestLib.obs - 0 error(s), 0 warning(s)")
+ValidateOutput "Step 44", "Find string 'TestLib.obs - 0 error(s), 0 warning(s)' in File " + strLogFIlePath5, Retval, 0
+
+Retval = FileExist(ScriptFilepath + "\Setup.inx")
+ValidateOutput "Step 45", "Verify " + ScriptFilepath + "\Setup.inx' was created", Retval, -1
+
+Retval = FileExist(ScriptFilepath + "\Setup.map")
+ValidateOutput "Step 46", "Verify " + ScriptFilepath + "\Setup.map' was created", Retval, -1
+
+Retval = FileExist(ScriptFilepath + "\Setup.obs")
+ValidateOutput "Step 47", "Verify " + ScriptFilepath + "\Setup.obs' was created", Retval, -1
+
+Retval = FileExist(ScriptFilepath + "\Setup.dbg")
+ValidateOutput "Step 48", "Verify " + ScriptFilepath + "\Setup.dbg' was created", Retval, -1
+
+Retval = FileExist(strProjectFolder + "\TestData\TestLib.obs")
+ValidateOutput "Step 49", "Verify " + strProjectFolder + "\TestData\TestLib.obs' was created", Retval, 0
+
+Retval = FileExist(strProjectFolder + "\TestData\TestLib.map")
+ValidateOutput "Step 50", "Verify " + strProjectFolder + "\TestData\TestLib.map' was created", Retval, 0
+
+
+'**** COMPILE PROJECT ****
+'Test -l option
+CMDINPUT = BuildPath + " " + chr(34) + strProjectFolder + "\TestData\TestLib.obs" + chr(34) + " -l"
+
+Retval = CommnadLineOutPut(CMDINPUT, strLogFIlePath6)
+ValidateOutput "Step 51", "Run the command " + CMDINPUT, Retval, 0
+
+
+'**** COMPILE VALIDATION ****
+Retval = FindStringInFile(strLogFIlePath6, "Creating Library...")
+ValidateOutput "Step 52", "Find string 'Creating Library...' in File " + strLogFIlePath6 , Retval, 0
+
+Retval = FindStringInFile(strLogFIlePath6, "TestLib.obl - 0 error(s), 0 warning(s)")
+ValidateOutput "Step 53", "Find String 'TestLib.obl - 0 error(s), 0 warning(s)' in File " + strLogFIlePath6, Retval, 0
+
+Retval = FileExist(strProjectFolder + "\TestData\TestLib.obl")
+ValidateOutput "Step 54", "Verify " + strProjectFolder + "\TestData\TestLib.obl' was created", Retval, 0
+
+Retval = FileExist(strProjectFolder + "\TestData\TestLib.obs")
+ValidateOutput "Step 55", "Verify " + strProjectFolder + "\TestData\TestLib.obs' was created", Retval, 0
+
+Retval = FileExist(strProjectFolder + "\TestData\TestLib.map")
+ValidateOutput "Step 56", "Verify " + strProjectFolder + "\TestData\TestLib.map' was created", Retval, 0
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+
+'**** POST-CLEANUP ****	
+Set WShell = Nothing
+Set FSO = Nothing
+
+</script>
+</job>  
+
+
+
+
+
+
+
