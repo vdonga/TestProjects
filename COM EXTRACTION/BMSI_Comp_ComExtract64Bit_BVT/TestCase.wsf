@@ -1,0 +1,54 @@
+<job id="BMSI_Comp_ComExtract64Bit_BVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs"/>
+<script language="VBScript">
+
+'**** TEST CASE DESCRIPTION ****
+'BMSI_Comp_ComExtract64Bit_BVT
+
+
+'**** OBJECT CREATION **** 
+Set FSO = CreateObject("Scripting.FileSystemObject")
+Set WshShell = CreateObject("WScript.Shell")
+Set AutoHelper = CreateObject("AutomationHelper.AutomationLayerHelper")
+
+
+'**** VARIABLE DECLARATION ****
+strProjectName = "BMSI_Comp_ComExtract64Bit_BVT"
+strProjectFolder = GetProjectFolder()
+strIsmFileName = strProjectFolder + "\" + strProjectName + ".ism"
+strLogFilePath = strProjectFolder + "\AutoBuildLog1.txt"
+msiFilePath = strProjectFolder + "\BMSI_Comp_ComExtract64Bit_BVT\Product Configuration 1\Release 1\DiskImages\DISK1\Com_Extraction_64Bit.msi"
+strResultOutput = strProjectFolder + "\" + "TestResult.txt"	
+
+pSQL1 = "SELECT `Component` from `Component` WHERE `ComponentId` = '{2F55E511-65AF-4046-87D5-81C969115DDD}'"
+pSQL2 = "SELECT `Component` from `Component` WHERE `ComponentId` = '{C2982148-CEED-495D-8445-9E9326CBFBD5}'"
+
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) then
+	FSO.DeleteFile strResultOutput,True
+End if
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) **** 
+Retval = BuildProject(strIsmFileName, strLogFilePath)
+ValidateOutput "Step 1", "Project Build successfully", Retval, 0  
+
+
+'**** BUILD VALIDATION ****
+Retval = SearchBuildOutput(strLogFilePath, "Extracting COM data ")
+ValidateOutput "Step 2", "Search value for Extracting COM data", Retval, 0  
+
+Retval = AutoHelper.SQLQuery(pSQL1, msiFilePath, msiProdProperty)
+ValidateOutput "Step 3", "Query Executed successfully and retrived value successfully", msiProdProperty, "TestActiveX64.ocx"
+
+Retval = AutoHelper.SQLQuery(pSQL2, msiFilePath, msiProdProperty)
+ValidateOutput "Step 4", "Query Executed successfully and retrived value successfully", msiProdProperty, "TestAtlExe64.exe"
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+
+</script>
+</job>   

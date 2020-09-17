@@ -1,0 +1,59 @@
+<job id="BMSI_Comp_ComExtractProp_BVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs"/>
+<script language="VBScript">
+
+On Error Resume Next
+
+'**** TEST CASE DESCRIPTION ****
+'The purpose of this test case is to verify the build time behaviour of com extract build property in components view of basic msi project
+
+
+'**** OBJECT CREATION ****
+Set WshShell = CreateObject("WScript.Shell")
+Set FSO = CreateObject("Scripting.FileSystemObject")
+
+
+'**** VARIABLE DECLARATION ****
+ProjectName = "BMSI_Comp_ComExtractProp_BVT"
+ProjectFolder = GetProjectFolder()
+strResultOutput = ProjectFolder + "TestResult.txt"
+strbuildlog = ProjectFolder + "Buildlog.log"
+
+ProjectPath = ProjectFolder + ProjectName + ".ism"
+strbuildlogtext = "Extracting COM data from 1 component(s)"
+strbuildlogtext1 = "New Class {1EBC4C70-9417-11D2-8A49-00C04FC83AF4} dynamically acquired for component CSCCIps.dll"
+strbuildlogtext2 = "New Registry Entries (7) dynamically acquired for component CSCCIps.dll"
+
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput, True
+End If
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+Retval = BuildProject(ProjectPath, strbuildlog)
+ValidateOutput "Step 1", "Build  Project: " +ProjectName, Retval, 0
+
+
+'**** BUILD VALIDATION ****
+Retval = SearchBuildOutput(strbuildlog, strbuildlogtext)
+ValidateOutput "Step 2", "Search the String in the build log", Retval, 0
+
+Retval = SearchBuildOutput(strbuildlog, strbuildlogtext1)
+ValidateOutput "Step 3", "Search the String in the build log", Retval, 0
+
+Retval = SearchBuildOutput(strbuildlog, strbuildlogtext2)
+ValidateOutput "Step 4", "Search the String in the build log", Retval, 0
+
+
+'**** POST CLEANUP ****
+Set WshShell = nothing
+Set FSO = nothing
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+</script>
+</job>
