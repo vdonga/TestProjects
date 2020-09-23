@@ -1,0 +1,49 @@
+<job id="ISMSI_SQLScripts_BVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs"/>
+<script language="VBScript">
+
+On Error Resume Next  
+
+'**** TEST CASE DESCRIPTION ****
+'This testcase is to verify that InstallScript MSI project with SQL connection builds without any error
+
+
+'**** OBJECT CREATION ****
+Set WshShell = CreateObject("WScript.Shell")
+Set FSO = CreateObject("Scripting.FileSystemObject")
+
+
+'**** VARIABLE DECLARATION ****
+strProjectName = "ISMSI_SQLScripts_BVT" 
+ProjectFolder = GetProjectFolder()
+strResultOutput = ProjectFolder + "TestResult.txt"
+strProjectPath = ProjectFolder + strProjectName + ".ism"
+strBuildLog = ProjectFolder + "Build.log"
+
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput, True
+End If
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+RetVal = BuildProject(strProjectPath, strBuildLog)
+ValidateOutput "Step 1", "Build Project: " + strProjectName, RetVal, 0
+
+
+'**** BUILD VALIDATION ****
+Retval = SearchBuildOutput(strBuildLog, "0 error(s)")
+ValidateOutput "Step 2", "Project Built with 0 errors", Retval, 0
+
+
+'**** POST CLEANUP ****
+Set WshShell = nothing
+Set FSO = nothing
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+</script>
+</job>

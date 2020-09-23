@@ -1,0 +1,133 @@
+<job id="BMSI_EnvVars_Prop_BVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs"/>
+<script language="VBScript">
+
+
+'**** TEST CASE DESCRIPTION ****
+'The purpose of this test case is to test the run time functionality of the properties of environment variables.
+'This TC has been renamed from RVT to BVT.
+
+
+'**** OBJECT CREATION ***
+Set FSO = CreateObject("Scripting.FileSystemObject")
+Set WshShell = CreateObject("WScript.Shell")
+Set AutoHelper = CreateObject("AutomationHelper.AutomationLayerHelper")
+
+
+'**** VARIABLE DECLARATION ****
+strProjectName = "BMSI_EnvVars_Prop_BVT"
+strProjectName1 = "BMSI_EnvVars_Prop_BVT"
+strProjectFolder = GetProjectFolder()
+strIsmFileName1 = strProjectFolder + "\" + strProjectName1 + ".ism"
+strLogFilePath1 = strProjectFolder + "\AutoBuildLog1.txt"
+msiFilePath1 = strProjectFolder + "\BMSI_EnvVars_Prop_BVT\Product Configuration 1\Release 1\DiskImages\DISK1\_BasicMSI_EnvironmentVariables_Properties_RVT1.msi"
+strResultOutput = strProjectFolder + "\" + "TestResult.txt"
+
+strProductCode = "{B248FE1B-D218-46AF-AC15-B57AB5BA75DD}"
+
+'Queries
+pSQL1 = "SELECT `Name` from `Environment` WHERE `Environment` = 'NewEnvironment1'"
+pSQL2 =  "SELECT `Value` from `Environment` WHERE `Environment` = 'NewEnvironment1'"
+pSQL3 =  "SELECT `Component_` from `Environment` WHERE `Environment` = 'NewEnvironment1'"
+
+pSQL4 = "SELECT `Name` from `Environment` WHERE `Environment` = 'NewEnvironment2'"
+pSQL5 = "SELECT `Value` from `Environment` WHERE `Environment` = 'NewEnvironment2'"
+pSQL6 = "SELECT `Component_` from `Environment` WHERE `Environment` = 'NewEnvironment2'"
+
+pSQL7 =  "SELECT `Name` from `Environment` WHERE `Environment` = 'NewEnvironment3'"
+pSQL8 =  "SELECT `Value` from `Environment` WHERE `Environment` = 'NewEnvironment3'"
+pSQL9 =  "SELECT `Component_` from `Environment` WHERE `Environment` = 'NewEnvironment3'"
+
+pSQL10 = "SELECT `Name` from `Environment` WHERE `Environment` = 'NewEnvironment4'"
+pSQL11 =  "SELECT `Value` from `Environment` WHERE `Environment` = 'NewEnvironment4'"
+pSQL12 =  "SELECT `Component_` from `Environment` WHERE `Environment` = 'NewEnvironment4'"
+
+pSQL13 =  "SELECT `Name` from `Environment` WHERE `Environment` = 'NewEnvironment5'"
+pSQL14 =  "SELECT `Value` from `Environment` WHERE `Environment` = 'NewEnvironment5'"
+pSQL15 =  "SELECT `Component_` from `Environment` WHERE `Environment` = 'NewEnvironment5'"
+
+pSQL16 = "SELECT `Name` from `Environment` WHERE `Environment` = 'NewEnvironment6'"
+pSQL17 =  "SELECT `Value` from `Environment` WHERE `Environment` = 'NewEnvironment6'"
+pSQL18 =  "SELECT `Component_` from `Environment` WHERE `Environment` = 'NewEnvironment6'"
+
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput,True
+End if
+   
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+Retval = BuildProject(strIsmFileName1, strLogFilePath1)
+ValidateOutput "Step 1", "Project Build successfully'.", Retval, 0   
+
+
+'**** BUILD VALIDATION ****
+Retval = AutoHelper.SQLQuery(pSQL1, msiFilePath1, msiProdProperty1)
+ValidateOutput "Step 2", "Query Executed successfully and retrived value successfully'", msiProdProperty1 , "!-NewEnvironment1"
+
+Retval = AutoHelper.SQLQuery(pSQL2, msiFilePath1, msiProdProperty2)
+ValidateOutput "Step 3", "Query Executed successfully and retrived value successfully'", msiProdProperty2, "[~];"
+
+Retval = AutoHelper.SQLQuery(pSQL3, msiFilePath1, msiProdProperty3)
+ValidateOutput "Step 4", "Query Executed successfully and retrived value successfully'", msiProdProperty3, "NewComponent1"
+
+Retval = AutoHelper.SQLQuery(pSQL4, msiFilePath1, msiProdProperty4)
+ValidateOutput "Step 5", "Query Executed successfully and retrived value successfully'", msiProdProperty4, "+NewEnvironment2" 
+
+Retval = AutoHelper.SQLQuery(pSQL5, msiFilePath1, msiProdProperty5)
+ValidateOutput "Step 6", "Query Executed successfully and retrived value successfully'", msiProdProperty5, "C:\Windows" 
+
+Retval = AutoHelper.SQLQuery(pSQL6, msiFilePath1, msiProdProperty6)
+ValidateOutput "Step 7", "Query Executed successfully and retrived value successfully'", msiProdProperty6, "NewComponent2" 
+
+Retval = AutoHelper.SQLQuery(pSQL7, msiFilePath1, msiProdProperty7)
+ValidateOutput "Step 8", "Query Executed successfully and retrived value successfully'", msiProdProperty7, "*=-NewEnvironment3" 
+
+Retval = AutoHelper.SQLQuery(pSQL8, msiFilePath1, msiProdProperty8)
+ValidateOutput "Step 9", "Query Executed successfully and retrived value successfully'", msiProdProperty8, "[INSTALLDIR]" 
+
+Retval = AutoHelper.SQLQuery(pSQL9, msiFilePath1, msiProdProperty9)
+ValidateOutput "Step 10", "Query Executed successfully and retrived value successfully'", msiProdProperty9, "NewComponent3" 
+
+Retval = AutoHelper.SQLQuery(pSQL10, msiFilePath1, msiProdProperty10)
+ValidateOutput "Step 11", "Query Executed successfully and retrived value successfully'", msiProdProperty10, "+-NewEnvironment4" 
+
+Retval = AutoHelper.SQLQuery(pSQL11, msiFilePath1, msiProdProperty11)
+ValidateOutput "Step 12", "Query Executed successfully and retrived value successfully'", msiProdProperty11, "C:\" 
+
+Retval = AutoHelper.SQLQuery(pSQL12, msiFilePath1, msiProdProperty12)
+ValidateOutput "Step 13", "Query Executed successfully and retrived value successfully'", msiProdProperty12, "NewComponent4" 
+
+Retval = AutoHelper.SQLQuery(pSQL13, msiFilePath1, msiProdProperty13)
+ValidateOutput "Step 14", "Query Executed successfully and retrived value successfully'", msiProdProperty13, "*=NewEnvironment5" 
+
+Retval = AutoHelper.SQLQuery(pSQL14, msiFilePath1, msiProdProperty14)
+ValidateOutput "Step 15", "Query Executed successfully and retrived value successfully'", msiProdProperty14, "TestFolder;[~]" 
+
+Retval = AutoHelper.SQLQuery(pSQL15, msiFilePath1, msiProdProperty15)
+ValidateOutput "Step 16", "Query Executed successfully and retrived value successfully'", msiProdProperty15, "NewComponent5" 
+
+Retval = AutoHelper.SQLQuery(pSQL16, msiFilePath1, msiProdProperty16)
+ValidateOutput "Step 17", "Query Executed successfully and retrived value successfully'", msiProdProperty16, "*+NewEnvironment6" 
+
+Retval = AutoHelper.SQLQuery(pSQL17, msiFilePath1, msiProdProperty17)
+ValidateOutput "Step 18", "Query Executed successfully and retrived value successfully'", msiProdProperty17, "[~];TESTWIN" 
+
+Retval = AutoHelper.SQLQuery(pSQL18, msiFilePath1, msiProdProperty18)
+ValidateOutput "Step 19", "Query Executed successfully and retrived value successfully'", msiProdProperty18, "NewComponent6" 
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+
+</script>
+</job>
+
+
+
+
+
+
+

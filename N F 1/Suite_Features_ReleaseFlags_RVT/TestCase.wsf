@@ -1,0 +1,133 @@
+<job id="Suite_Features_ReleaseFlags_RVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs" />
+<script language="VBScript">
+
+On error resume next
+
+'**** TEST CASE DESCRIPTION ****
+'The purpose of this test case is to verify the run time behavior of the Property Release Flags
+
+
+'**** OBJECT CREATION ****
+Set FSO = CreateObject("Scripting.FileSystemObject")
+Set WshShell = CreateObject("WScript.Shell")
+
+
+'**** VARIABLE DECLARATION ****
+ProjectName = "Suite_Features_ReleaseFlags_RVT"
+ProjectFolder = GetProjectFolder()
+
+strLogFilePath1 = ProjectFolder + "\strBuildLogFile1.log"
+strLogFilePath2 = ProjectFolder + "\strBuildLogFile2.log"
+strLogFilePath3 = ProjectFolder + "\strBuildLogFile3.log"
+strResultOutput = ProjectFolder + "\" + "TestResult.txt"
+strInstallLogPath = ProjectFolder + "\" + ProjectName + "\strInstallLogFile.log"
+projectPath = ProjectFolder + "\" + ProjectName + ".issuite"	
+
+strSetupPath1 = ProjectFolder + "\" + ProjectName + "\Release1\DiskImages\Disk1\Setup.exe"
+strSetupPath2 = ProjectFolder + "\" + ProjectName + "\Release2\DiskImages\Disk1\Setup.exe"
+strSetupPath3 = ProjectFolder + "\" + ProjectName + "\Release3\DiskImages\Disk1\Setup.exe"
+
+SuiteGuid = "{E9EF0EB6-5C1C-4566-95CE-F371EB73C285}"
+ACHPackageGuid = "{F2ADB87E-56A7-4895-96F9-2CECA416BFB7}"
+RemedyPackageGuid = "{73CAEF66-E42B-11D5-806D-0010A4E2368E}"
+
+Release1 = "-r Release1"
+Release2 = "-r Release2"
+
+
+'**** PRE-CLEANUP ****	                        
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput, True
+End If 
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+'Building Release1
+Retval = BuildProjectwithOptions (projectPath, strLogFilePath1, Release1)
+ValidateOutput "Step 1", "Build project named " + ProjectName + ".issuite Release1", Retval, 0
+
+'Building Release2	 
+Retval = BuildProjectwithOptions (projectPath, strLogFilePath2, Release2)
+ValidateOutput "Step 2", "Build project named " + ProjectName + ".issuite Release2", Retval, 0
+
+
+'**** PRE-CLEANUP ****	
+Retval = UninstallSuiteSetupWithLog(strSetupPath1, strInstallLogPath)
+ValidateOutput "Step 3", "Uninstall Suite Product Code: " + SuiteGuid, Retval, 0
+
+Retval = UninstallSuiteSetupWithLog(strSetupPath2, strInstallLogPath)
+ValidateOutput "Step 4", "Uninstall Suite Product Code: " + SuiteGuid, Retval, 0
+
+Retval =  UninstallSetup(ACHPackageGuid, "Basic")
+ValidateOutput "Step 5", "Uninstall Product Code: " + ACHPackageGuid, Retval, 0
+
+Retval =  UninstallSetup(RemedyPackageGuid, "Basic")
+ValidateOutput "Step 6", "Uninstall Product Code: " + RemedyPackageGuid, Retval, 0
+
+
+'**** INSTALL ****
+Retval = InstallSetup (strSetupPath1, "Suite", "Silent", strLogFilePath1)
+ValidateOutput "Step 7", "Verify project " + strSetupPath1 + " installs successfully", Retval, 0
+
+
+'**** INSTALL VALIDATION ****
+arrPackages = Array (SuiteGuid + "\Suite\0", ACHPackageGuid + "\Basic\0", RemedyPackageGuid + "\Basic\-1")
+Retval = isSuiteInstalled (arrPackages)
+ValidateOutput "Step 8", "Verify the first package got installed and second one not", Retval, 0
+
+
+'**** UNINSTALL ****	
+Retval = UninstallSuiteSetupWithLog(strSetupPath1, strInstallLogPath)
+ValidateOutput "Step 9", "Uninstall Suite, Product Code:" + SuiteGuid, Retval, 0
+
+
+'**** UNINSTALL VALIDATION ****
+allPackages = Array (SuiteGuid + "\Suite\-1", ACHPackageGuid + "\Basic\-1", RemedyPackageGuid + "\Basic\-1")
+Retval = isSuiteInstalled (allPackages)
+ValidateOutput "Step 10", "Verify none of the packages are installed", Retval, 0
+
+
+'**** INSTALL ****
+Retval = InstallSetup (strSetupPath2, "Suite", "Silent", strLogFilePath2)
+ValidateOutput "Step 11", "Verify project " + strSetupPath2 + " installs successfully", Retval, 0
+
+
+'**** INSTALL VALIDATION ****
+arrPackages = Array (SuiteGuid + "\Suite\0", ACHPackageGuid + "\Basic\-1", RemedyPackageGuid + "\Basic\0")
+Retval = isSuiteInstalled (arrPackages)
+ValidateOutput "Step 12", "Verify the second package got installed and first one not", Retval, 0
+
+
+'**** UNINSTALL ****	
+Retval = UninstallSuiteSetupWithLog(strSetupPath2, strInstallLogPath)
+ValidateOutput "Step 13", "Uninstall Product Code: " + SuiteGuid, Retval, 0
+
+
+'**** UNINSTALL VALIDATION ****
+allPackages = Array (SuiteGuid + "\Suite\-1", ACHPackageGuid + "\Basic\-1", RemedyPackageGuid + "\Basic\-1")
+Retval = isSuiteInstalled (allPackages)
+ValidateOutput "Step 14", "Verify none of the packages are installed", Retval, 0
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+
+'**** POST-CLEANUP ****	
+Set ProjectName = Nothing
+Set ProjectFolder = Nothing
+Set strLogFilePath1 = Nothing
+Set strLogFilePath2 = Nothing
+Set strLogFilePath3 = Nothing
+Set strSetupPath1 = Nothing
+Set strSetupPath2 = Nothing
+Set strSetupPath3 = Nothing
+Set SuiteGuid = Nothing
+Set ACHPackageGuid = Nothing
+Set RemedyPackageGuid = Nothing
+
+</script>
+</job>
+
+

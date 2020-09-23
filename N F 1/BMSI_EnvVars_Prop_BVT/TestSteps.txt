@@ -1,0 +1,78 @@
+Steps to create "_BasicMSI_EnvironmentVariables_Properties_RVT1".ism
+---------------------------------------------------------------------
+
+1. Create a Basic MSI project by providing the name as "_BasicMSI_EnvironmentVariables_Properties_RVT1"
+2. Go to Features view, create the following 6 Features.
+     	NewFeature1
+	NewFeature2
+	NewFeature3
+	NewFeature4
+	NewFeature5
+	NewFeature6
+3. Go to Components view, create the following 6 components
+	NewComponent1
+	NewComponent2
+	NewComponent3
+	NewComponent4
+	NewComponent5
+	NewComponent6
+4. Go to Setup Design.
+ 	Associate NewFeature1 to Newcomponent1.
+ 	Associate NewFeature2 to Newcomponent2.
+ 	Associate NewFeature3 to Newcomponent3.
+ 	Associate NewFeature4 to Newcomponent4.
+ 	Associate NewFeature5 to Newcomponent5.
+ 	Associate NewFeature6 to Newcomponent6.
+5.Go to Environment Variables view, Create 6 Environment variables.
+	NewEnvironment1 - NewComponent1
+	NewEnvironment2 - NewComponent2
+	NewEnvironment3 - NewComponent3
+	NewEnvironment4 - NewComponent4
+	NewEnvironment5 - NewComponent5
+	NewEnvironment6 - NewComponent6
+	Associate each one with a component.
+
+6.Set following properties for the NewEnvironment1-
+ 	 Component:  NewComponent1
+	 Value:    Disabled 
+	 On Intsall:   Remove
+	 Placement:   Append
+	 On Uninstall:   Remove
+	 Type:   User
+7. Set following properties for the NewEnvironment2-
+ 	 Component:   NewComponent2
+	 Value:   C:\WINDOWS                   
+	 On Intsall:   Create
+	 Placement:       Replace                                    
+	 On Uninstall:   Leave
+	 Type:   User
+8. Set following properties for the NewEnvironment3-
+ 	 Component:   NewComponent3
+	 Value:   [INSTALLDIR]                                                
+	 On Intsall:   Set
+	 Placement:   Replace                                           
+	 On Uninstall:   Remove
+	 Type:   System
+9. Set following properties for the NewEnvironment4-
+ 	 Component:   NewComponent4
+	 Value:   C:\                                                   
+	 On Intsall:   Create
+	 Placement:    Replace                                             
+	 On Uninstall:   Remove
+	 Type:   User
+10. Set following properties for the NewEnvironment5-
+ 	Compo nent:   NewComponent5
+	 Value:  TestFolder 
+	 On Intsall:   Set
+	 Placement:   Prefix                                                   
+	 On Uninstall:   Leave
+	 Type:   System
+11. Set following properties for the NewEnvironment6-
+ 	Component:   NewComponent6
+ 	Value:  TESTWIN                                                   
+ 	On Intsall:   Create
+ 	Placement:     Append                                                                 
+ 	On Uninstall:   Leave
+ 	Type:   System
+
+12. Save the Project.

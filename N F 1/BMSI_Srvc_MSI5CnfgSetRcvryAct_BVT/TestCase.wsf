@@ -1,0 +1,62 @@
+<job id="BMSI_Srvc_MSI5CnfgSetRcvryAct_BVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs"/>
+<script language="VBScript">
+
+
+'**** TEST CASE DESCRIPTION ****
+'This test case verifies the behavior of the grid sub properties..
+'..under 'Recovery Actions' property related to Configure Settings of a Service in Component.
+
+
+'**** OBJECT CREATION ****
+Set FSO = CreateObject("Scripting.FileSystemObject")
+Set WshShell = CreateObject("WScript.Shell")
+Set AutoHelper = CreateObject("AutomationHelper.AutomationLayerHelper")
+
+
+'**** VARIABLE DECLARATION ****
+strProjectName = "BMSI_Srvc_MSI5CnfgSetRcvryAct_BVT"
+strProjectFolder = GetProjectFolder()
+strIsmFileName = strProjectFolder + "\" + strProjectName + ".ism"
+strLogFilePath = strProjectFolder + "\AutoBuildLog1.txt"
+msiFilePath1 = strProjectFolder + "\BMSI_Srvc_MSI5CnfgSetRcvryAct_BVT\Product Configuration 1\Release 1\DiskImages\DISK1\_BasicMSI_ConfigureSettings_RecoveryActions_RVT1.msi"
+strResultOutput = strProjectFolder + "\" + "TestResult.txt"
+
+pSQL1 = "SELECT `ServiceInstall` from `ServiceInstall` WHERE `DisplayName` = 'My TestService'"
+pSQL2 = "SELECT `MsiServiceConfigFailureActions` from `MsiServiceConfigFailureActions` WHERE `Name` = 'TestService1'"
+pSQL3 = "SELECT `RebootMessage` from `MsiServiceConfigFailureActions` WHERE `Event` = 7"
+
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput, True
+End if
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) **** 	
+Retval = BuildProject(strIsmFileName, strLogFilePath)
+ValidateOutput "Step 1", "Project Build successfully", Retval, 0 
+
+
+'**** BUILD VALIDATION ****
+Retval = SearchBuildOutput(strLogFilePath, "0 error(s)")
+ValidateOutput "Step 2", "Searchoutput for 0 error(s)", Retval, 0  
+
+
+'**** BUILD VALIDATION ****
+Retval = AutoHelper.SQLQuery(pSQL1, msiFilePath1, msiProdProperty)
+ValidateOutput "Step 3", "Query Executed successfully and retrived value successfully", msiProdProperty, "NewServiceInstall1"
+
+Retval = AutoHelper.SQLQuery(pSQL2, msiFilePath1, msiProdProperty)
+ValidateOutput "Step 4", "Query Executed successfully and retrived value successfully", msiProdProperty, "RecAction1"
+
+Retval = AutoHelper.SQLQuery(pSQL3, msiFilePath1, msiProdProperty)
+ValidateOutput "Step 5", "Query Executed successfully and retrived value successfully", msiProdProperty, "This is Reboot Message"
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+
+</script>
+</job>

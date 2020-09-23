@@ -1,0 +1,119 @@
+<job id="IS_SetupProperties_BVT">
+<script language="VBScript" src="..\..\..\CoreLibs\iscorelib.vbs"/>
+<script language="VBScript">
+
+On Error Resume Next  
+
+'**** TEST CASE DESCRIPTION ****
+'The purpose of this test case is to verify setup properties.
+
+
+'**** OBJECT CREATION ****
+Set WshShell = CreateObject("WScript.Shell")
+Set FSO = CreateObject("Scripting.FileSystemObject")
+
+
+'**** VARIABLE DECLARATION ****
+strProjectName1 = "IS_SetupProperties_BVT"
+
+strProjectFolder = GetProjectFolder()
+strResultOutput = strProjectFolder + "TestResult.txt"
+
+strProjectPath1 = strProjectFolder + "\" + strProjectName1 + ".ism"
+
+SetupPath1 = strProjectFolder + strProjectName1 + "\Media\Release 1\Package\sIS_SetupProperties_BVT.exe"
+SetupPath2 = strProjectFolder + strProjectName1 + "\Media\Release 2\Disk Images\Disk1\setup.exe"
+
+strLogFile1 = strProjectFolder + "BuildLog1.log"
+strLogFile2 = strProjectFolder + "BuildLog2.log"
+
+strOption1 = "-r" + chr(32) + chr(34) + "Release 1" + chr(34) + chr(32) + "/cert_password" + chr(32) + chr(34) + "12" + chr(34)
+strOption2 = "-r" + chr(32) + chr(34) + "Release 2" + chr(34)
+
+'**** PRE-CLEANUP ****
+If FSO.FileExists(strResultOutput) Then
+	FSO.DeleteFile strResultOutput, True
+End if
+
+
+'**** BUILD PROJECT (BUILD + UPGRADE) ****
+'Build Release 1 with overriding release properties
+Retval = BuildProjectwithOptions(strProjectPath1,strLogFile1,strOption1)
+ValidateOutput "Step 1", "Build Project with overriding release properties.", Retval, 0
+
+
+'**** BUILD VALIDATION ****
+Retval = SearchBuildOutput(strLogFile1, "0 error(s)")
+ValidateOutput "Step 2", "Search for '0 error(s)' in " + strLogFile1 + " file", Retval, 0
+
+
+'**** VALIDATION ****
+Retval = FetchFileProperty(SetupPath1, "FileVersion")
+ValidateOutput "Step 3", "Check file version", Retval, "32.43.65.87"
+
+Retval = FetchFileProperty(SetupPath1, "ProductName")
+ValidateOutput "Step 4", "Check product name", Retval, "IS_SetupProperties_BVT"
+
+Retval = FetchFileProperty(SetupPath1, "ProductVersion")
+ValidateOutput "Step 5", "Check product version", Retval, "1.10.1000"
+
+Retval = FetchFileProperty(SetupPath1, "CompanyName")
+ValidateOutput "Step 6", "Check company name", Retval, "Revenera"
+
+Retval = FetchFileProperty(SetupPath1, "Copyright")
+ValidateOutput "Step 7", "Check copyright notice", Retval, "(C) IS 2020 Copyright"
+
+Retval = FetchFileProperty(SetupPath1, "Language")
+ValidateOutput "Step 8", "Check built language", Retval, "Italian (Italy)"
+
+Retval = FetchFileProperty(SetupPath1, "FileDescription")
+ValidateOutput "Step 9", "Check product's file description", Retval, "IS_SetupProperties_BVT File Description"
+
+Retval = CheckSignInfo(SetupPath1, "sha256")
+ValidateOutput "Step 10", "Check setup digital info signed with /cert_password parameter", Retval, 0
+
+
+'**** BUILD PROJECT (BUILD) ****
+'Build Release 2 with default project properties
+Retval = BuildProjectwithOptions(strProjectPath1,strLogFile2,strOption2)
+ValidateOutput "Step 11", "Build Project with default project properties.", Retval, 0
+
+
+'**** BUILD VALIDATION ****
+Retval = SearchBuildOutput(strLogFile2, "0 error(s)")
+ValidateOutput "Step 12", "Search for '0 error(s)' in " + strLogFile2 + " file", Retval, 0
+
+
+'**** VALIDATION ****
+Retval = FetchFileProperty(SetupPath2, "FileVersion")
+ValidateOutput "Step 13", "Check file version", Retval, "1.10.1000"
+
+Retval = FetchFileProperty(SetupPath2, "ProductName")
+ValidateOutput "Step 14", "Check product name", Retval, "IS_SetupProperties_BVT"
+
+Retval = FetchFileProperty(SetupPath2, "ProductVersion")
+ValidateOutput "Step 15", "Check product version", Retval, "1.10.1000"
+
+Retval = FetchFileProperty(SetupPath2, "CompanyName")
+ValidateOutput "Step 16", "Check company name", Retval, "Revenera"
+
+Retval = FetchFileProperty(SetupPath2, "Copyright")
+ValidateOutput "Step 17", "Check copyright notice", Retval, "Copyright (c) 2020 Flexera. All Rights Reserved."
+
+Retval = FetchFileProperty(SetupPath2, "Language")
+ValidateOutput "Step 18", "Check built language", Retval, "English (United States)"
+
+Retval = FetchFileProperty(SetupPath2, "FileDescription")
+ValidateOutput "Step 19", "Check product's file description", Retval, "InstallScript Setup Launcher Unicode"
+
+
+'**** POST CLEANUP ****
+Set WshShell = nothing
+Set FSO = nothing
+
+
+'**** END OF SCRIPT ****
+EndOfScript()
+
+</script>
+</job>

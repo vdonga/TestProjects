@@ -1,0 +1,40 @@
+Steps to create "_BasicMSI_ConfigureSettings_RecoveryActions_RVT1.ism"
+-----------------------------------------------------------------------
+
+1. Create a Basic MSI Project  by providing name as "_BasicMSI_ConfigureSettings_RecoveryActions_RVT1".
+2. Go to Setup Design View., Add a Feature named 'Feature1' and Add a Component named 'Component1' to 'Feature1'.
+3. Go to Files and Folders View, Add 'Notepad.exe' from TestData folder to [INSTALLDIR].
+4. Go to Components View, Select Notepad.exe | Advanced Settings | Services.
+  	a. Right-Click services, add a Service named "TestService".
+  	b. Set 'Display Name' under Install Settings as "My TestService".
+5. Select the property 'Recovery Actions' under control settings click on the '+' button
+     a. Change the Property value to 'Recaction1'
+     b. Expand "Key Name = RecAction1", set the properties as shown below:
+	Run Time Properties:
+	 During Install: Yes
+	 During Uninstall: Yes
+	 During Reinstall: Yes
+	 Reset Period: 599
+	 Reboot Message: This is Reboot Message.
+	 Run Command: Test Command
+6. Select grid 'SCM Actions' under 'Key Name=RecovAction1' and Click on the '+' button 4 times.
+     a. Expand "SCM Actions".
+     b. Set each one of the Type property to following values:
+	Type: Restart Service.
+	Type: Run Command.
+	Type: Reboot Computer.
+	Type: Take No Action.
+7. Select Property "Recovery Actions" under ConfigureSettings, Click on the '+' button.
+     Change the value of property to "RecAction2".
+     a. Expand "Key Name = RecovAction2", set the properties as shown below:
+	Run Time Properties:
+ 	During Install: Yes
+	During Uninstall: No
+	During Reinstall: No
+	Reset Period: 3
+8. Save the Project.
+
+Verification:
+-----------------
+
+1. Check the entries in 'ServiceInstall' and 'MsiServiceConfigFailureActions' tables.

@@ -1,0 +1,317 @@
+<html><TITLE>Save Grid result as HTML File</TITLE>
+<body><table><tr BGCOLOR="#800000"><td ><b><font color=white>Attachment&nbsp</font></b></td><td ><b><font color=white>Step Name&nbsp</font></b></td><td ><b><font color=white>Description&nbsp</font></b></td><td ><b><font color=white>Expected Result&nbsp</font></b></td></tr><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 1</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Create a BasicMSI project &amp;quot;BasicMSI_MSI5.0_Services_ConfigureSettings_RecoveryActions_IDEVT&amp;quot;</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Project is created without any errors.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 2</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Go to Setup Design View,<br>Add Feature named 'Feature1'.<br>Add Component named 'Component1' to 'Feature1'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Feature1' and 'Component1' are created without any errors.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 3</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Go to Components View,<br>Select Component1 | Advanced Settings | Services.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify Description about services is displayed on the right side.&lt;br&gt;IOC-000082785</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 4</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Right-Click on Services node and Select 'Add Service'.<br>Rename it as 'Service1'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify New Service with default name 'MyService1' is created.<br>Verify renaming is successful.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 5</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property grid 'Recovery Actions' under Configure Settings.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify default value of 'Recovery Actions' is '0 action(s)'.<br>Verify grid has '+' button towards extreme right.<br>Verify grid is NOT editable.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 6</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on '+' button twice on 'Recovery Actions' property grid.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify Property value changes to '2 action(s)'.<br>Verify two sub rows with following values are added:<br>     Key Name:NewRecAction1<br>     Key Name:NewRecAction2</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 7</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property grid 'Key Name' under 'Recovery Actions'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it has 'X' button towards extreme right.<br>Observe this property has option to expand/collapse.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 8</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on 'X' button for sub row &amp;quot;Key Name : NewRecAction2&amp;quot;.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it pops up a dialog with following message:<br>&quot;Are you sure you want to remove the selected item?&quot;.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 9</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on 'No' from the dialog.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify sub row &quot;Key Name : NewRecAction2&quot; is NOT deleted.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 10</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Again click on 'X' button for sub row &quot;Key Name : NewRecAction2&quot; .</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it pops up a dialog with following message:<br>&quot;Are you sure you want to remove the selected item?&quot;.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 11</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on 'Yes' from the dialog.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify sub row &quot;Key Name : NewRecAction2&quot; is deleted.<br>Verify 'Events' property value is changed to '1 action(s)'.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 12</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property 'Key Name',&lt;br&gt;Give value as '123456test'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it throws the following error:&quot; Field &quot;MsiServiceConfigFailureActions&quot; of table &quot;MsiServiceConfigFailureActions&quot;: An invalid identifier was supplied.<br>The field may contain letters, digits, underscores (_), or periods (.).  The field must begin with a letter or an underscore.<br>&quot;</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 13</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select 'OK' on the error dialog.<br>Give value as '!@#$%%^&amp;&amp;*(())'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should close error dialog.<br>Verify it throws error message again.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 14</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select 'OK' on the error dialog.&lt;br&gt;Give the following values:&lt;br&gt;'test_1234'&lt;br&gt;'_123test'&lt;br&gt;'RecActionKey1'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Should close error dialog.<br>Verify all the values are accepted without any errors.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 15</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Expand property 'Key Name: EventKey1'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it has following sub rows with default values:<br>   Run Time: [During Install]<br>   Reset Period: 60<br>   Reboot Message: BLANK<br>   Run Command: BLANK<br>   SCM Actions: 0 action(s)</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 16</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select grid property 'Run Time' under 'Key Name'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify this property is NOT editable.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 17</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Expand property 'Run Time'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it has following sub rows with default values: &lt;br&gt;During Install: Yes&lt;br&gt;During Uninstall: No&lt;br&gt;During Reinstall: No</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 18</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property 'During Uninstall' under 'Run Time'.&lt;br&gt;Do multiple click on the grid value.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it is NOT editable.&lt;br&gt;Verify this property has a Combo box with options 'Yes' or 'No' to choose.&lt;br&gt;Should toggle property value between Yes and No.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 19</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set 'During Uninstall' property as 'Yes' and then change it to 'No'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify 'Run Time' property value includes 'During Uninstall' when set to Yes and clears it when set to No.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 20</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property 'During Install' under 'Run Time'.&lt;br&gt;Do multiple click on the grid value.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it is NOT editable.&lt;br&gt;Verify this property has a Combo box with options 'Yes' or 'No' to choose.&lt;br&gt;Should toggle property value between Yes and No.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 21</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set 'During Install' property as 'Yes' and then change it to ''No.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify 'Run Time' property value includes 'During Install' when set to Yes &amp;nbsp;and clears it when set to No.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 22</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property 'During Reinstall' under 'Run Time'.<br>Do multiple click on the grid value.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it is NOT editable.&lt;br&gt;Verify this property has a Combo box with options 'Yes' or 'No' to choose.&lt;br&gt;Should toggle property value between Yes and No.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 23</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set 'During Reinstall' property as 'Yes' and then change it to 'No'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify 'Run Time' property value includes 'During Reinstall' when set to Yes and clears it when set to No.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 24</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set the values of the 'Run Time' as shown below:&lt;br&gt; &amp;nbsp;During Install: No&lt;br&gt; &amp;nbsp;During Uninstall: No&lt;br&gt; &amp;nbsp;During Reinstall: No</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it throws appropriate error indicating at any given time all the three values cannot be Set to No.&lt;br&gt;IOC-000082802</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 25</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property 'During Install' under 'Run Time'. <br>Press 'Space' key on keyboard multiple times.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify value of 'During Install' should toggle between 'Yes' and 'No'.&lt;br&gt;IOC-000082803</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 26</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select row 'Reset Period' under 'Key Name'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify default value of the property is '60'.<br>Verify this field is editable.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 27</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Provide following values:<br>'testword'<br>'!@#$%^&amp;&amp;*(('<br>'123test'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify field does NOT accept these values. Should pop out message saying &quot;Unacceptable Characters -you can only type numbers here&quot;.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 28</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Give the Following values:<br>'12345'<br>'2147483647'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it accepts both the values without any errors.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 29</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the increment button for the property 'Reset Period'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify the value does NOT change.(Its maximun value).&lt;br&gt;IOC-000082805</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 30</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the decrement button for the property 'Reset Period'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify the value is decrement by '1' which is '2147483646'.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 31</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set the value of 'Reset Period' as '0'.<br>Click on decrement button.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify value is set without any errors.<br>Verify value does NOT change (it is minimum value).</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 32</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the increment button for the property 'Reset Period'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify value is incremented by '1'.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 33</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set the value of 'Reset Period' as '1345678956485758'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify property value resets back it maximum value i.e. '2147483647'&lt;br&gt;IOC-000082805</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 34</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property 'Reboot Message'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify by default property value is BLANK.<br>Verify this field is editable.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 35</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Give the Following values:<br>'12345mymsg'<br>'!@#$^%&amp;***&amp;((()*(&amp;*()&amp;*&amp;_'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it accepts all the values.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 36</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the ellipse for property 'Reboot Message'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it launches 'String Editor' dialog.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 37</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select row with identifier as 'COMPANY_NAME' from the dialog.<br>Click on Cancel.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Row should be highlighted.<br>Verify 'String Editor' dialog closes and 'Reboot Message' value is NOT changed.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 38</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the ellipse for property 'Reboot Message'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it launches 'String Editor' dialog.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 39</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select row with identifier as 'COMPANY_NAME' from the dialog.<br>Click on OK.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Row should be highlighted.<br>Verify 'String Editor' dialog closes and 'Reboot Message' value is  changed to &quot;{COMPANY_NAME} Your Company Name&quot;.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 40</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property 'Run Command'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify by default property value is BLANK.<br>Verify this field is editable.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 41</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Give the Following values:<br>'12345mymsg'<br>'!@#$^%&amp;***&amp;((()*(&amp;*()&amp;*&amp;_'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it accepts all the values.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 42</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the ellipse for property 'Run Command'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it launches 'String Editor' dialog.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 43</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select row with identifier as 'DN_AlwaysInstall' from the dialog.<br>Click on Cancel.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Row should be highlighted.<br>Verify 'String Editor' dialog closes and 'Run Command' value is NOT changed.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 44</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the ellipse for property 'Run Command'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it launches 'String Editor' dialog.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 45</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select row with identifier as 'DN_AlwaysInstall' from the dialog.<br>Click on OK.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Row should be highlighted.&lt;br&gt;Verify 'String Editor' dialog closes and 'Run Command' value is &amp;nbsp;changed to &amp;quot;{DN_AlwaysInstall} Always Install&amp;quot;.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 46</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select row 'SCM Actions' under Key Name.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify default value of the property is '0 action(s)'.<br>Verify grid has '+' button towards extreme right.<br>Verify this field is NOT editable.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 47</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on '+' button twice on 'SCM Actions' property grid.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify Property value changes to '2 action(s)'.<br>Verify two sub rows with following values are added:<br>     Type: Restart Service<br>     Type: Restart Service</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 48</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select any one property grid 'Type' under 'SCM Actions'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it has 'X' button towards extreme right.<br>Observe this property has option to expand/collapse.<br>Verify this field is NOT editable.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 49</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on 'X' button for sub row  'Type'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it pops up a dialog with following message:<br>&quot;Are you sure you want to remove the selected item?&quot;.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 50</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on 'No' from the dialog.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify sub row  'Type' is NOT deleted.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 51</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Again click on 'X' button for sub row  'Type' .</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it pops up a dialog with following message:<br>&quot;Are you sure you want to remove the selected item?&quot;.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 52</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on 'Yes' from the dialog.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify sub row  'Type' is deleted.<br>Verify 'SCM Actions' property value is changed to '1 action(s)'.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 53</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on Combo for the property 'Type' under 'SCM Actions'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify drop-down has following values:<br>     Restart Service<br>     Run Command<br>     Reboot Computer<br>     Take No Action</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 54</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Expand the property 'Type'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it has following sub row:<br>'Delay: 500'.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 55</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Select property 'Delay' under Type property.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">verify by default its value is '500'.<br>Verify this field is editable.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 56</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Provide following values:<br>'testword'<br>'!@#$%^&amp;&amp;*(('<br>'123test'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify field does NOT accept these values. Should pop out message saying &quot;Unacceptable Characters -you can only type numbers here&quot;.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 57</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Give the Following values:<br>'12345'<br>'32767'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify it accepts both the values without any errors.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 58</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the increment button for the property 'Delay'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify the value does NOT change (It is maximum value).</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 59</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the decrement button for the property 'Delay'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify the value is decrement by '1' which is '32766'.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 60</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set the value of 'Delay' as '0'.&lt;br&gt;Click on decrement button.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify value is set without any errors.<br>Verify value does NOT change (it is minimum value).</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 61</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Click on the increment button for the property 'Delay'.</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify value is incremented by '1'.</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 62</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Set the value of 'Delay' as '1345678956485758'</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Verify property value resets back it maximum value i.e. '32767'</pre></font></TD>
+</TR><TR>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2"></pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Step 63</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build the setup.&lt;br&gt;Close the Project</pre></font></TD>
+<TD VALIGN="TOP"><pre><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular" size="2">Build should be successful with 0 errors.&lt;br&gt;Project should be closed without any issues.</pre></font></TD>
+</TR></table></body></html>
