@@ -17,8 +17,12 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: InstallShieldInstall@1
+  inputs:
+    ISVersion: '2020'
+    ISLicenseServerPort: 'ec2-3-15-222-195.us-east-2.compute.amazonaws.com:27000'
 - task: InstallShieldBuild@1
   inputs:
-    Prjname: 'My Project Name-1.ism'
+    PrjName: 'N F 1/BMSI_EnvVars_Prop_BVT/BMSI_EnvVars_Prop_BVT.ism'
     AgentLoc: 'HostedAgent'
-    ServerPort: 'ec2-3-15-222-195.us-east-2.compute.amazonaws.com:27000'
+    ISLicenseServerPort: 'ec2-3-15-222-195.us-east-2.compute.amazonaws.com:27000'
