@@ -25,14 +25,14 @@ steps:
     Prjname: 'MyProjectName-1.ism'
     Parameters: '-r "Release 1" -y "2.2.1"'
     AgentLoc: 'PrivateAgent'
-    SABPath: ''C:\agent\_work\_temp\SAB2020'
+    SABPath: 'C:\agent\_work\_temp\SAB2020'
 
 - task: InstallShieldBuild@1
   inputs:
     Prjname: 'My Project Name-1.ism'
     Parameters: '-r "Release 2" -y "2.2.3"'
     AgentLoc: 'PrivateAgent'
-    SABPath: ''C:\agent\_work\_temp\SAB2020'
+    SABPath: 'C:\agent\_work\_temp\SAB2020'
 
 - task: PublishPipelineArtifact@1
   inputs:
