@@ -16,7 +16,10 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
-
+- task: InstallShieldInstall@1
+  inputs:
+    ISVersion: '2020'
+    ISLicenseServerPort: 'ec2-3-15-222-195.us-east-2.compute.amazonaws.com:27000'
 - task: InstallShieldBuild@1
   inputs:
     Prjname: 'MyProjectName-1.ism'
