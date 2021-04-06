@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool: Default
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+- task: InstallShieldInstall@1
+  inputs:
+    ISVersion: '2020'
+    ISLicenseServerPort: 'ec2-18-221-133-147.us-east-2.compute.amazonaws.com:27006'
+- task: InstallShieldBuild@1
+  inputs:
+    Prjname: 'MyProjectName-1.ism'
+    Parameters: '-r "Release 1" -y "2.2.1"'
+    AgentLoc: 'PrivateAgent'
+    SABPath: 'C:\agent\_work\_temp\SAB2020'
+
+- task: InstallShieldBuild@1
+  inputs:
+    Prjname: 'My Project Name-1.ism'
+    Parameters: '-r "Release 2" -y "2.2.3"'
+    AgentLoc: 'PrivateAgent'
+    SABPath: 'C:\agent\_work\_temp\SAB2020'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)/MyProjectName-1/Product Configuration 1/Release 1/DiskImages/DISK1'
+    artifact: 'Result'
+    publishLocation: 'pipeline'
