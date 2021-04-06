@@ -39,3 +39,9 @@ steps:
     targetPath: '$(System.DefaultWorkingDirectory)/MyProjectName-1/Product Configuration 1/Release 1/DiskImages/DISK1'
     artifact: 'Result'
     publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)/MyProjectName-1/Product Configuration 1/Release 2/DiskImages/DISK1'
+    artifact: 'Result'
+    publishLocation: 'pipeline'
